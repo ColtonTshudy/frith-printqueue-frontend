@@ -1,0 +1,59 @@
+[
+    {
+        "print_id": "F23-3D-1",
+        "status": "Approved - Waiting for Printer",
+        "start_time": "",
+        "duration": ""
+    },
+    {
+        "print_id": "F23-3D-2",
+        "status": "Requires Approval from MGMT",
+        "start_time": "",
+        "duration": ""
+    },
+    {
+        "print_id": "F23-3D-3",
+        "status": "Approved by MGMT",
+        "start_time": "",
+        "duration": ""
+    },
+    {
+        "print_id": "F23-3D-17",
+        "status": "",
+        "start_time": "",
+        "duration": ""
+    },
+    {
+        "print_id": "F23-3D-4",
+        "status": "Printing",
+        "start_time": 1692243805,
+        "duration": 500
+    },
+    {
+        "print_id": "F23-3D-5",
+        "status": "Printing",
+        "start_time": 1692210000,
+        "duration": 0.5
+    },
+    {
+        "print_id": "F23-3D-6",
+        "status": "",
+        "start_time": "",
+        "duration": ""
+    },
+    {
+        "print_id": "F23-3D-7",
+        "status": "Failed - Attempting Re-Print",
+        "start_time": 1692243807,
+        "duration": 1
+    },
+    {
+        "print_id": "F23-3D-8",
+        "status": "Failed - Attempting Re-Print",
+        "start_time": 1692210000,
+        "duration": 0.5
+    },
+    {},
+    {},
+    {}
+]

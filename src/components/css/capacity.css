@@ -1,0 +1,29 @@
+#capacity-body {
+    border: solid 5px white;
+    display: flex;
+}
+
+#capacity-fill {
+    max-width: 100%;
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+}
+
+#capacity-fill>label {
+    font-family: "San Francisco";
+    font-weight: bold;
+    color: transparent;
+
+    text-align: center;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    flex: 0 0 100%;
+}
+
+#capacity-spacer {
+    flex: 0 0 3px;
+}

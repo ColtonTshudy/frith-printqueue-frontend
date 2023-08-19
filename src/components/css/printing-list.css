@@ -1,0 +1,10 @@
+#printing-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.printing-item {
+    width: 80%;
+    font-size: 80%;
+}

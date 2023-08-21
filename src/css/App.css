@@ -12,6 +12,10 @@ body {
   font-family: San Francisco;
 }
 
+.picture-background {
+  z-index: -10;
+}
+
 .main-container {
   display: flex;
   flex-direction: row;

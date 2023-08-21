@@ -26,7 +26,7 @@ const Clock = ({ className, data }) => {
             <label style={{
                 fontSize: `${height * 0.5}px`,
             }}>
-                {date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+                {date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
             </label>
             <label style={{
                 fontSize: `${height * .2}px`,

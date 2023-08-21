@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 
 import './css/capacity.css';
-import padZeros from './pad-zeros-func'
 
-const Capacity = ({ className, students, max }) => {
+const Capacity = ({ className, data }) => {
+    //unpack data
+    const students = data.current
+    const max = data.max
+
+    //hooks
     const ref = useRef()
     const [width, setWidth] = useState()
     const [height, setHeight] = useState()

@@ -7,32 +7,34 @@ import Queue from './components/queue-list'
 import Key from './components/queue-key'
 import Calendar from './components/calendar'
 import Capacity from './components/capacity'
+import Clock from './components/clock'
 
 import Neco from './assets/neco.png'
 import Torgersen from './assets/torgersen.jpg'
 
 const print_api_url = "https://script.googleusercontent.com/macros/echo?user_content_key=3xxxii9SiqLjf4y8b8beO2Pz85leuNmAqOuY6UFGPoOFb9FyoCDHOvO-IBGhKAdKYr4UmgMi0GHfa_PdYSL7Nr32Jhlkj1O-m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnArRAwHSNPPq7pDcoLAwYX40YnK4ybPvpHRuWOigBzEAfcg0a410HiTuEL9yoVdrYy3Nb51WRo9v9edRx1ucKuaUVAEh4jPTgA&lib=MN9JxjBccorYYWxCW5XYinS8iU2Jo7_id"
-const refresh_time = 10 //minutes
+const refresh_time = 5 //minutes to refresh
 
 // For testing
-import PrinterData from './assets/dummyprinterdata.json'
+import PrinterData from './rsc/dummyprinterdata.json'
+import HoursData from './rsc/openhours.json'
+import CapacityData from './rsc/capacity.json'
+import TrainingsData from './rsc/trainings.json'
 
 function App() {
-  const [prints, setPrints] = useState([])
-  const [capacity, setCapacity] = useState([])
-  const [trainings, setTrainings] = useState([])
-  const [closing, setClosing] = useState([])
+  const [printData, setPrintData] = useState([])
+  const [capacityData, setCapacityData] = useState([])
+  const [trainingsData, setTrainingsData] = useState([])
+  const [hoursData, setHoursData] = useState([])
 
   const [refresh, setRefresh] = useState(false)
 
-  //fetches from each api every 15 minutes
+  //fetches from each api every X minutes
   useEffect(() => {
-    //15 minute refresh timer
-    console.log('refreshed')
-
+    //X minute refresh timer
     const timer = setTimeout(() => {
       setRefresh((oldState) => !oldState)
-    }, 1000 * 60 * 5)
+    }, 1000 * 60 * refresh_time)
 
     //fetch 3d printer queue data
     // setPrints(removeEmpties(PrinterData)) //dummy data
@@ -44,7 +46,7 @@ function App() {
     })
       .then(
         data => {
-          setPrints(removeEmpties(data))
+          setPrintData(removeEmpties(data))
         }
       )
       .catch(err => {
@@ -52,8 +54,13 @@ function App() {
       })
 
     //fetch capacity data
+    setCapacityData(CapacityData) //dummy data
 
-    //fetch calendar data
+    //fetch opening/closing hours data
+    setHoursData(HoursData) //dummy data
+
+    //fetch tool training appointments data
+    setTrainingsData(TrainingsData) //dummy data
 
     //reset timer
     return () => {
@@ -64,14 +71,14 @@ function App() {
   return (
     <div className="main-container">
 
-      <img src={Torgersen} className="fullscreen" />
+      <img src={Torgersen} className="fullscreen picture-background" />
 
       <div className="left-screen">
         <div className="printer-column">
-          <Printing className="printer-printing blur" data={prints} />
+          <Printing className="printer-printing blur" data={printData} />
         </div>
         <div className="printer-column ">
-          <Queue className="printer-queue blur" data={prints} />
+          <Queue className="printer-queue blur" data={printData} />
           <Key className="printer-key blur" />
           {/* <img src={Neco} /> */}
         </div>
@@ -79,10 +86,16 @@ function App() {
 
       <div className="right-screen">
         {/* <FrithLogo className="frith-logo" /> */}
-        <div className="capacity-box blur">
-          <Capacity className="capacity" students={25} max={55} />
+        <div className="top-box">
+          <div className="capacity-box blur">
+            <label className="capacity-label">Lab Capacity</label>
+            <Capacity className="capacity" data={capacityData} />
+          </div>
+          <div className="clock-box blur">
+            <Clock className="clock" data={hoursData} />
+          </div>
         </div>
-        <Calendar className="calendar" data={trainings} />
+        <Calendar className="calendar" data={trainingsData} />
       </div>
 
     </div >

@@ -1,0 +1,7 @@
+#clock-main{
+    font-family: "San Francisco";
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

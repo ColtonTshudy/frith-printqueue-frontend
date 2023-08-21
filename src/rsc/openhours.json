@@ -1,0 +1,37 @@
+[
+    {
+        "day": "sunday",
+        "open": 11,
+        "close": 16
+    },
+    {
+        "day": "monday",
+        "open": 8,
+        "close": 21
+    },
+    {
+        "day": "tuesday",
+        "open": 8,
+        "close": 21
+    },
+    {
+        "day": "wednesday",
+        "open": 8,
+        "close": 21
+    },
+    {
+        "day": "thursday",
+        "open": 8,
+        "close": 21
+    },
+    {
+        "day": "friday",
+        "open": 8,
+        "close": 18
+    },
+    {
+        "day": "saturday",
+        "open": 11,
+        "close": 16
+    }
+]

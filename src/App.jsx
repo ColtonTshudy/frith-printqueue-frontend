@@ -12,7 +12,7 @@ import Clock from './components/clock'
 import Neco from './assets/neco.png'
 import Torgersen from './assets/torgersen.jpg'
 
-const print_api_url = "https://script.googleusercontent.com/macros/echo?user_content_key=3xxxii9SiqLjf4y8b8beO2Pz85leuNmAqOuY6UFGPoOFb9FyoCDHOvO-IBGhKAdKYr4UmgMi0GHfa_PdYSL7Nr32Jhlkj1O-m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnArRAwHSNPPq7pDcoLAwYX40YnK4ybPvpHRuWOigBzEAfcg0a410HiTuEL9yoVdrYy3Nb51WRo9v9edRx1ucKuaUVAEh4jPTgA&lib=MN9JxjBccorYYWxCW5XYinS8iU2Jo7_id"
+const print_api_url = "https://script.google.com/macros/s/AKfycbyN22oZdeTkunq8VZRNIK8ehjFLZPHbeikhVhzEqe5L7ZJEzlcMTVXuU5R1KMX714J5/exec"
 const refresh_time = 5 //minutes to refresh
 
 // For testing

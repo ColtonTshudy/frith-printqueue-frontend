@@ -1,5 +1,10 @@
 #this script is used to run the frontend on startup on an OrangePi Zero 2 using the debian image
 
+#INSTRUCTIONS
+#the project should be cloned in the /home/orangepi/ directory
+#then, goto settings > settings manager > session and startup > application autostart
+#add command "sh /home/orangepi/frith-printqueue-frontend/startup.sh"
+
 #configure xfce desktop environment to prevent sleeping
 xset s off
 xset -dpms s off

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-
 import './css/capacity.css';
 
 const Capacity = ({ className, data }) => {

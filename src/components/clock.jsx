@@ -25,11 +25,13 @@ const Clock = ({ className, data }) => {
         <div className={className} id="clock-main" ref={ref}>
             <label style={{
                 fontSize: `${height * 0.5}px`,
+                textShadow: "1px 1px 5px black",
             }}>
                 {date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
             </label>
+            <div className="seperator" />
             <label style={{
-                fontSize: `${height * .2}px`,
+                fontSize: `${height * .15}px`,
                 fontStyle: 'italic'
             }}>
                 Closing at {formatTime(closeTime)}

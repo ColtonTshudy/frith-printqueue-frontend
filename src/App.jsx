@@ -7,6 +7,7 @@ import Queue from './components/queue-list'
 import Key from './components/queue-key'
 import Calendar from './components/calendar'
 import Capacity from './components/capacity'
+import Attendance from './components/attendance'
 import Clock from './components/clock'
 
 import Neco from './assets/neco.png'
@@ -74,7 +75,7 @@ function App() {
 
       <img src={Torgersen} className="fullscreen picture-background" />
 
-      <div className="left-screen">
+      <div className="left-screen blur">
         <div className="printer-column">
           <Printing className="printer-printing blur" data={printData} />
         </div>
@@ -89,8 +90,8 @@ function App() {
         {/* <FrithLogo className="frith-logo" /> */}
         <div className="top-box">
           <div className="capacity-box blur">
-            <label className="capacity-label">Lab Capacity</label>
-            <Capacity className="capacity" data={capacityData} />
+            <label className="capacity-label">Lab Attendance</label>
+            <Attendance className="capacity" data={capacityData} />
           </div>
           <div className="clock-box blur">
             <Clock className="clock" data={hoursData} />

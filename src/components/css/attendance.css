@@ -1,0 +1,7 @@
+#attendance-body {
+    border: solid 5px white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}

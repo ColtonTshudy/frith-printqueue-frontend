@@ -27,7 +27,7 @@ const PrintItem = ({ className, printID, status, startTime, duration }) => {
   return (
     <div className={className} style={{
       backgroundColor: getColor(status, timeRemaining),
-      margin: "2%",
+      margin: "1%",
       padding: "2%",
       borderRadius: '10px',
       color: 'black',

@@ -79,7 +79,7 @@ function App() {
         <div className="printer-column">
           <Printing className="printer-printing blur" data={printData} />
         </div>
-        <div className="printer-column ">
+        <div className="printer-column">
           <Queue className="printer-queue blur" data={printData} />
           <Key className="printer-key blur" />
           {/* <img src={Neco} /> */}

@@ -75,7 +75,7 @@ function App() {
 
       <img src={Torgersen} className="fullscreen picture-background" />
 
-      <div className="left-screen blur">
+      <div className="left-screen">
         <div className="printer-column">
           <Printing className="printer-printing blur" data={printData} />
         </div>

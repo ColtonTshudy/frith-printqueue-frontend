@@ -6,9 +6,9 @@ xset -dpms s off
 xset dpms 0 0 0
 
 #build the distributable (only needed once)
-cd /home/orangepi/frith-printqueue-frontend
-npm i
-npm run build
+# cd /home/orangepi/frith-printqueue-frontend
+# npm i
+# npm run build
 
 #host index.html
 cd /home/orangepi/frith-printqueue-frontend/dist

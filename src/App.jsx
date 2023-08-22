@@ -12,6 +12,7 @@ import Clock from './components/clock'
 
 import Neco from './assets/neco.png'
 import Torgersen from './assets/torgersen.jpg'
+import Torgersen2 from './assets/p1840383511.jpg'
 
 const print_api_url = "https://script.google.com/macros/s/AKfycbyN22oZdeTkunq8VZRNIK8ehjFLZPHbeikhVhzEqe5L7ZJEzlcMTVXuU5R1KMX714J5/exec"
 const refresh_time = 1 //minutes to refresh
@@ -73,7 +74,8 @@ function App() {
   return (
     <div className="main-container">
 
-      <img src={Torgersen} className="fullscreen picture-background" />
+      {/* <img src={Torgersen} className="fullscreen picture-background" /> */}
+      <img src={Torgersen2} className="fullscreen picture-background" />
 
       <div className="left-screen">
         <div className="printer-column">

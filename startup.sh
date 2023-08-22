@@ -12,7 +12,7 @@ npm run build
 
 #host index.html
 cd /home/orangepi/frith-printqueue-frontend/dist
-xfce-terminal -e "python3 -m http.server 8000"
+xfce4-terminal -e "python3 -m http.server 8000"
 
 #open in chromium
-xfce-terminal -e "chromium --kiosk http://localhost:8000"
+xfce4-terminal -e "chromium --kiosk http://localhost:8000"

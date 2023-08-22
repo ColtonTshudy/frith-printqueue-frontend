@@ -13,7 +13,7 @@ import Neco from './assets/neco.png'
 import Torgersen from './assets/torgersen.jpg'
 
 const print_api_url = "https://script.google.com/macros/s/AKfycbyN22oZdeTkunq8VZRNIK8ehjFLZPHbeikhVhzEqe5L7ZJEzlcMTVXuU5R1KMX714J5/exec"
-const refresh_time = 5 //minutes to refresh
+const refresh_time = 1 //minutes to refresh
 
 // For testing
 import PrinterData from './rsc/dummyprinterdata.json'
@@ -26,6 +26,7 @@ function App() {
   const [capacityData, setCapacityData] = useState([])
   const [trainingsData, setTrainingsData] = useState([])
   const [hoursData, setHoursData] = useState([])
+1
 
   const [refresh, setRefresh] = useState(false)
 

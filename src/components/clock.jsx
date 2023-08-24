@@ -34,9 +34,9 @@ const Clock = ({ className, data }) => {
                 fontSize: `${height * .15}px`,
                 fontStyle: 'italic'
             }}>
-                Closing at {formatTime(closeTime)}
+                {`Closing at ${formatTime(closeTime)}`}
             </label>
-        </div >
+        </div > 
     )
 };
 

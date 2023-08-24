@@ -1,0 +1,13 @@
+.calendar-day-weekday {
+    font-size: 50px;
+    text-align: center;
+    text-justify: center;
+    font-weight: bold;
+}
+
+.calendar-day-container {
+    flex: 1;
+    /* background-color:white; */
+    margin: 10px;
+    border: solid 3px white;
+}

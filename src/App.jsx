@@ -1,3 +1,11 @@
+/*
+TODO
+- Add big "CLOSING IN X MINUTES" over schedule 15 from closing
+- Display opening time before opening, closing time before closing
+
+*/
+
+
 import { useState, useEffect } from 'react'
 import './css/App.css'
 import './css/Fonts.css'
@@ -10,25 +18,21 @@ import Capacity from './components/capacity'
 import Attendance from './components/attendance'
 import Clock from './components/clock'
 
-import Neco from './assets/neco.png'
-import Torgersen from './assets/torgersen.jpg'
 import Torgersen2 from './assets/p1840383511.jpg'
 
-const print_api_url = "https://script.google.com/macros/s/AKfycbyN22oZdeTkunq8VZRNIK8ehjFLZPHbeikhVhzEqe5L7ZJEzlcMTVXuU5R1KMX714J5/exec"
 const refresh_time = 1 //minutes to refresh
 
-// For testing
-import PrinterData from './rsc/dummyprinterdata.json'
+//for testing
+// import PrinterData from './rsc/dummyprinterdata.json'
 import HoursData from './rsc/openhours.json'
 import CapacityData from './rsc/capacity.json'
-import TrainingsData from './rsc/trainings.json'
+// import TrainingsData from './rsc/trainings.json'
 
 function App() {
   const [printData, setPrintData] = useState([])
   const [capacityData, setCapacityData] = useState([])
   const [trainingsData, setTrainingsData] = useState([])
   const [hoursData, setHoursData] = useState([])
-1
 
   const [refresh, setRefresh] = useState(false)
 
@@ -41,7 +45,7 @@ function App() {
 
     //fetch 3d printer queue data
     // setPrints(removeEmpties(PrinterData)) //dummy data
-    fetch(print_api_url).then(res => {
+    fetch("http://localhost:3100/printer").then(res => {
       if (res.status >= 400) {
         throw new Error("Server responds with error!");
       }
@@ -63,7 +67,21 @@ function App() {
     setHoursData(HoursData) //dummy data
 
     //fetch tool training appointments data
-    setTrainingsData(TrainingsData) //dummy data
+    // setTrainingsData(TrainingsData) //dummy data
+    fetch("http://localhost:3100/canvas").then(res => {
+      if (res.status >= 400) {
+        throw new Error("Server responds with error!");
+      }
+      return res.json()
+    })
+      .then(
+        data => {
+          setTrainingsData(data)
+        }
+      )
+      .catch(err => {
+        console.log(err)
+      })
 
     //reset timer
     return () => {

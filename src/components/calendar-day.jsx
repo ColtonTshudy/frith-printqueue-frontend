@@ -8,7 +8,7 @@ const Calendar = ({ className, day, data }) => {
 
     return (
         <div className={className}>
-            <label className="calendar-day-weekday">{weekday[day]}</label>
+            <label className="calendar-day-weekday">{weekday[day%7]}</label>
             <div className="seperator" />
             <div className="calendar-day-container" ref={ref}>
                 

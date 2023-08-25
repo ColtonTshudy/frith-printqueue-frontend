@@ -12,6 +12,9 @@
     align-items: stretch;
 
     margin: 1%;
+
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
 }
 
 .calendar-sub {

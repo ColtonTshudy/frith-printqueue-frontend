@@ -68,7 +68,7 @@ function App() {
 
     //fetch tool training appointments data
     // setTrainingsData(TrainingsData) //dummy data
-    fetch("http://localhost:3100/canvas").then(res => {
+    fetch("http://localhost:3100/canvas-all").then(res => {
       if (res.status >= 400) {
         throw new Error("Server responds with error!");
       }

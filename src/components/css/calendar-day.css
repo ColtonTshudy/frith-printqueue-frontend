@@ -7,7 +7,6 @@
 
 .calendar-day-container {
     flex: 1;
-    /* background-color:white; */
     margin: 10px;
     border: solid 3px white;
 }

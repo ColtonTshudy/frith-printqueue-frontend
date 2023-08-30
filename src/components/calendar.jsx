@@ -2,7 +2,9 @@ import { useEffect, useState, useRef } from 'react'
 import CalendarDay from './calendar-day'
 import './css/calendar.css'
 
-const DEBUG_OFFSET = 0; //day offset for testing purposes
+// const DEBUG_OFFSET = -365*3+30*3-12; //offset for class_old3
+const DEBUG_OFFSET = -7; //offset for class_ula
+// const DEBUG_OFFSET = 0;
 
 const class_old = "course_109922";
 const class_old2 = "course_99575";
@@ -21,19 +23,29 @@ const Calendar = ({ className, data }) => {
     //     test = Object.keys(data).length ? 'green' : 'black'
     // }
     const [today, setDate] = useState(new Date());
-    const [appointments, setAppointments] = useState({})
+    const [appointments, setAppointments] = useState([])
     const ref = useRef();
+
+
 
     useEffect(() => {
         setDate(new Date())
-        getAppointments(data, today);
+        setAppointments(getAppointments(data, today));
     }, [data])
+
+    useEffect(() => {
+        console.log(appointments)
+    }, [appointments])
 
     return (
         <div className={className} ref={ref} id="calendar-main">
-            <CalendarDay className="calendar-day blur" day={today.getDay()} />
-            <CalendarDay className="calendar-day calendar-sub blur" day={today.getDay() + 1} />
-            <CalendarDay className="calendar-day calendar-sub blur" day={today.getDay() + 2} />
+            {/* {appointments.map((trainings, index) => <CalendarDay className={
+                `calendar-day blur ${index===0?"":"calendar-sub"}`
+            }
+            day={today.getDay()+index} trainings={trainings} />)} */}
+            {/* <CalendarDay className="calendar-day blur" day={today.getDay()} trainings={appointments[0]} />
+            <CalendarDay className="calendar-day calendar-sub blur" day={today.getDay() + 1} trainings={appointments[1]} />
+            <CalendarDay className="calendar-day calendar-sub blur" day={today.getDay() + 2} trainings={appointments[2]} /> */}
         </div>
     )
 }
@@ -64,54 +76,73 @@ const getAppointments = (data, date) => {
 
                 //do this once all appointments have been added
                 if (index === idCount - 1) {
-                    console.log(apptsByGroup)
-                    sortByDays(apptsByGroup, 3, date)
-                    return apptsByGroup
+                    // console.log(apptsByGroup)
+                    return sortByDays(apptsByGroup, 3, date)
                 }
             })
         })
     })
 }
 
-//returns a dictionary of all meetings belonging to a day
+/**
+ * Returns a dictionary of all meetings belonging to a day
+ * @param {*} data - appointments seperated by groupID
+ * @param {*} numDays - 
+ * @param {*} today 
+ * @returns 
+ */
 const sortByDays = (data, numDays, today) => {
     //output structure:
     /*
     [
-        {//day 1 (today)
-            0 : {<details>}, //one of today's appointments
-            1 : ...
+        { //day 1 all appointments (today)
+            0 : { //one of today's appointments
+                ...
+                title: <title String>
+                start_at: <start Date>
+                end_at: <end Date>
+                available_slots: <empty slots>,
+                participants_per_appointment: <total slots>
+                ...
+            }, 
+            1 : {...},
+            ...
         }
-        {//day 2 (tomorrow)
+        {//day 2 all appointments (tomorrow)
             ...
         },
         ...
     ]
     */
     const finalArray = Array.from(Array(numDays), () => new Array())
-
     const keys = Object.keys(data);
+
+    // console.log(data)
+    // console.log(keys)
 
     keys.forEach((key, index) => {
         // console.log(data[key]);
         data[key].forEach((e) => {
-            console.log(e.start_at)
+            // console.log(e.start_at)
             const test = new Date(e.start_at)
-            console.log(test.getTime())
+            // console.log(test.getTime())
 
             //iterate through day offsets, 0 to <numDays>
             for (const offset in [...Array(numDays).keys()]) {
+                //add the appointment to the proper day index, if applicable
                 if (isDate(test, today, parseInt(offset) + DEBUG_OFFSET)) {
                     finalArray[offset].push(e)
-                    console.log(e)
                 }
             }
         })
     })
 
-    console.log(finalArray)
+    const test = new Date(today)
+    test.setDate(test.getDate() + DEBUG_OFFSET)
+    // console.log(test)
+    // console.log(finalArray)
 
-    return 0
+    return finalArray
 }
 
 /**

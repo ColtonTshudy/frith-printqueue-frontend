@@ -82,8 +82,6 @@ function App() {
     }
   }, [refresh])
 
-  console.log()
-
   return (
     <div className="main-container">
       {/* <FrithLogo className="frith-logo" /> */}

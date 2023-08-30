@@ -14,8 +14,8 @@ const DEBUG_OFFSET = -7; //offset for class_ula
 const class_old = "course_109922";
 const class_old2 = "course_99575";
 const class_old3 = "course_121352";
-const class_ula = "course_162912";
-const class_production = "course_180929";
+const class_ula = "course_162912"; //test server
+const class_production = "course_180929"; //frith F23
 
 const class_id = class_ula;
 
@@ -37,7 +37,7 @@ const Calendar = ({ className, data }) => {
     }, [data])
 
     useEffect(() => {
-        console.log(appointments)
+        // console.log(appointments)
     }, [appointments])
 
     return (
@@ -128,9 +128,9 @@ const sortByDays = (data, today, numDays, TEST) => {
     const test = new Date(today)
     test.setDate(test.getDate() + DEBUG_OFFSET)
     // console.log(test)
-    console.log(finalArray)
+    // console.log(finalArray)
 
-    TEST(finalArray)
+    TEST(finalArray) //lol I passed the setState function here... shhhhh don't tell my react teacher
 
     return finalArray
 }

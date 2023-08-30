@@ -13,7 +13,7 @@ const Calendar = ({ className, day, trainings }) => {
     // console.log(trainings)
 
     const [now, setNow] = useState(new Date())
-    const [nowHour, setNowHour] = useState(0) // hour of the day in float form (0 to 24)
+    const [nowHour, setNowHour] = useState() // hour of the day in float form (0 to 24)
     const [durations, setDurations] = useState([])
     const [startHours, setStartHours] = useState([])
 
@@ -37,6 +37,10 @@ const Calendar = ({ className, day, trainings }) => {
         setDurations(durationsArr)
         setStartHours(startPercentsArr)
 
+        //initial set time
+        setNow(new Date())
+        setNowHour((now.getHours() + now.getMinutes() / 60))
+
         const timer = setInterval(() => {
             setNow(new Date())
             setNowHour((now.getHours() + now.getMinutes() / 60))
@@ -48,6 +52,7 @@ const Calendar = ({ className, day, trainings }) => {
 
     // console.log(((now.getHours() + now.getMinutes() / 60) - openTime) / closeTime * 100)
     // console.log(clamp((nowHour - openTime) / closeTime * 100, 0, 100))
+    // console.log(now)
 
     return (
         <div className={className}>

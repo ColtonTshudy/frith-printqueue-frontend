@@ -26,11 +26,9 @@ const Calendar = ({ className, data }) => {
     const [appointments, setAppointments] = useState([])
     const ref = useRef();
 
-
-
     useEffect(() => {
         setDate(new Date())
-        setAppointments(getAppointments(data, today));
+        getAppointments(data, today, 3, setAppointments);
     }, [data])
 
     useEffect(() => {
@@ -39,10 +37,15 @@ const Calendar = ({ className, data }) => {
 
     return (
         <div className={className} ref={ref} id="calendar-main">
-            {/* {appointments.map((trainings, index) => <CalendarDay className={
-                `calendar-day blur ${index===0?"":"calendar-sub"}`
-            }
-            day={today.getDay()+index} trainings={trainings} />)} */}
+            {appointments === undefined ? <></> :
+                appointments.map((trainings, index) =>
+                    <CalendarDay
+                        key={index}
+                        className={`calendar-day blur ${index === 0 ? "" : "calendar-sub"}`}
+                        day={today.getDay() + index}
+                        trainings={trainings}
+                    />
+                )}
             {/* <CalendarDay className="calendar-day blur" day={today.getDay()} trainings={appointments[0]} />
             <CalendarDay className="calendar-day calendar-sub blur" day={today.getDay() + 1} trainings={appointments[1]} />
             <CalendarDay className="calendar-day calendar-sub blur" day={today.getDay() + 2} trainings={appointments[2]} /> */}
@@ -51,7 +54,7 @@ const Calendar = ({ className, data }) => {
 }
 
 //returns a dictionary of all the appointments grouped by groupID
-const getAppointments = (data, date) => {
+const getAppointments = (data, date, numDays, TEST) => {
     const apptsByGroup = {}
     data.map((d) => {
         if (d.context_codes.includes(class_id))
@@ -77,43 +80,23 @@ const getAppointments = (data, date) => {
                 //do this once all appointments have been added
                 if (index === idCount - 1) {
                     // console.log(apptsByGroup)
-                    return sortByDays(apptsByGroup, 3, date)
+                    return sortByDays(apptsByGroup, date, 3, TEST)
                 }
             })
         })
     })
+
+    return false //failed if we get here
 }
 
 /**
  * Returns a dictionary of all meetings belonging to a day
  * @param {*} data - appointments seperated by groupID
- * @param {*} numDays - 
- * @param {*} today 
+ * @param {*} numDays - number of days to look ahead
+ * @param {*} today - today's date
  * @returns 
  */
-const sortByDays = (data, numDays, today) => {
-    //output structure:
-    /*
-    [
-        { //day 1 all appointments (today)
-            0 : { //one of today's appointments
-                ...
-                title: <title String>
-                start_at: <start Date>
-                end_at: <end Date>
-                available_slots: <empty slots>,
-                participants_per_appointment: <total slots>
-                ...
-            }, 
-            1 : {...},
-            ...
-        }
-        {//day 2 all appointments (tomorrow)
-            ...
-        },
-        ...
-    ]
-    */
+const sortByDays = (data, today, numDays, TEST) => {
     const finalArray = Array.from(Array(numDays), () => new Array())
     const keys = Object.keys(data);
 
@@ -140,7 +123,9 @@ const sortByDays = (data, numDays, today) => {
     const test = new Date(today)
     test.setDate(test.getDate() + DEBUG_OFFSET)
     // console.log(test)
-    // console.log(finalArray)
+    console.log(finalArray)
+
+    TEST(finalArray)
 
     return finalArray
 }
@@ -163,6 +148,8 @@ const isDate = (dateOther, dateBaseline, offsetDays = 0) => {
 
 export default Calendar
 
+//============================================================================
+
 //useful API stuff
 /*
 canvas data, after specifying group id:
@@ -170,5 +157,27 @@ data.appointments[0].available_slots: unreserved spots
 data.appointments[0].participants_per_appointments: total spots
 data.appointments[0].start_at: start time in date object string (east coast?)
 data.appointments[0].end_at: end time in date object string (east coast?)
+*/
 
+//output structure:
+/*
+[
+    { //day 1 all appointments (today)
+        0 : { //one of today's appointments
+            ...
+            title: <title String>
+            start_at: <start Date>
+            end_at: <end Date>
+            available_slots: <empty slots>,
+            participants_per_appointment: <total slots>
+            ...
+        }, 
+        1 : {...},
+        ...
+    }
+    {//day 2 all appointments (tomorrow)
+        ...
+    },
+    ...
+]
 */

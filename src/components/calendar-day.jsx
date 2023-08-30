@@ -3,8 +3,10 @@ import './css/calendar-day.css'
 
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-const Calendar = ({ className, day, data }) => {
+const Calendar = ({ className, day, trainings }) => {
     const ref = useRef();
+
+    console.log(trainings)
 
     return (
         <div className={className}>

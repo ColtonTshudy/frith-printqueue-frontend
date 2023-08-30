@@ -1,3 +1,8 @@
+/**
+ * Fetches trainings from canvas and displays them in wee little windows
+ * This component is super jank...
+ */
+
 import { useEffect, useState, useRef } from 'react'
 import CalendarDay from './calendar-day'
 import './css/calendar.css'

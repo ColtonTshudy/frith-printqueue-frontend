@@ -2,9 +2,7 @@
 TODO
 - Add big "CLOSING IN X MINUTES" over schedule 15 from closing
 - Display opening time before opening, closing time before closing
-
 */
-
 
 import { useState, useEffect } from 'react'
 import './css/App.css'
@@ -33,6 +31,7 @@ function App() {
   const [capacityData, setCapacityData] = useState([])
   const [trainingsData, setTrainingsData] = useState([])
   const [hoursData, setHoursData] = useState([])
+  const [date, setDate] = useState(new Date())
 
   const [refresh, setRefresh] = useState(false)
 
@@ -50,15 +49,11 @@ function App() {
         throw new Error("Server responds with error!");
       }
       return res.json()
+    }).then(data => {
+      setPrintData(removeEmpties(data))
+    }).catch(err => {
+      console.log(err)
     })
-      .then(
-        data => {
-          setPrintData(removeEmpties(data))
-        }
-      )
-      .catch(err => {
-        console.log(err)
-      })
 
     //fetch capacity data
     setCapacityData(CapacityData) //dummy data
@@ -73,15 +68,15 @@ function App() {
         throw new Error("Server responds with error!");
       }
       return res.json()
+    }).then(data => {
+      setTrainingsData(data)
+    }).catch(err => {
+      console.log(err)
     })
-      .then(
-        data => {
-          setTrainingsData(data)
-        }
-      )
-      .catch(err => {
-        console.log(err)
-      })
+
+
+
+    setDate(new Date())
 
     //reset timer
     return () => {
@@ -89,11 +84,21 @@ function App() {
     }
   }, [refresh])
 
+  console.log()
+
   return (
     <div className="main-container">
+      <FrithLogo className="frith-logo" />
 
       {/* <img src={Torgersen} className="fullscreen picture-background" /> */}
       <img src={Torgersen2} className="fullscreen picture-background" />
+      {
+        date.getHours() === 0 && date.getMinutes() < 3 ?
+          <div className="fullscreen youtube">
+            <iframe className="youtube" src="https://www.youtube.com/embed/4LMjbWDYsGs?si=-yHWly8StYjeS8KN&autoplay=1&mute=1&loop=1&playsinline=1&controls=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          : <></>
+      }
 
       <div className="left-screen">
         <div className="printer-column">
@@ -102,12 +107,10 @@ function App() {
         <div className="printer-column">
           <Queue className="printer-queue blur" data={printData} />
           <Key className="printer-key blur" />
-          {/* <img src={Neco} /> */}
         </div>
       </div>
 
       <div className="right-screen">
-        {/* <FrithLogo className="frith-logo" /> */}
         <div className="top-box">
           <div className="capacity-box blur">
             <label className="capacity-label">Lab Attendance</label>

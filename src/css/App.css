@@ -31,6 +31,16 @@ body {
   height: 100vh;
   width: 100vw;
   position: absolute;
+  overflow: hidden;
+}
+
+.youtube {
+  flex: 1;
+  border: transparent;
+  width: 100%;
+  height: 100%;
+
+  z-index: -3;
 }
 
 .blur {
@@ -45,7 +55,10 @@ body {
 .frith-logo {
   position: absolute;
   height: 200px;
-  max-width: 100%;
+  right: 50%;
+  top: 50%;
+
+  z-index: -4;
 }
 
 .left-screen {

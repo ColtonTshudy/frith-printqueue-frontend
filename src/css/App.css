@@ -55,10 +55,11 @@ body {
 .frith-logo {
   position: absolute;
   height: 200px;
-  right: 50%;
-  top: 50%;
+  right: 10%;
+  top: 20%;
 
   z-index: -4;
+  
 }
 
 .left-screen {

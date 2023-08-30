@@ -2,6 +2,7 @@
     display: flex;
     align-items: stretch;
     flex-direction: row;
+    font-size: 50px;
 }
 
 .calendar-day {
@@ -14,10 +15,11 @@
     margin: 1%;
 
     border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-}
+    border-top-right-radius: 50px;}
 
 .calendar-sub {
     flex: 1;
     margin-top: 10%;
+
+    font-size: 70%;
 }

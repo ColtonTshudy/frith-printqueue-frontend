@@ -74,8 +74,6 @@ function App() {
       console.log(err)
     })
 
-
-
     setDate(new Date())
 
     //reset timer
@@ -88,7 +86,7 @@ function App() {
 
   return (
     <div className="main-container">
-      <FrithLogo className="frith-logo" />
+      {/* <FrithLogo className="frith-logo" /> */}
 
       {/* <img src={Torgersen} className="fullscreen picture-background" /> */}
       <img src={Torgersen2} className="fullscreen picture-background" />

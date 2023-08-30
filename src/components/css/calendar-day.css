@@ -1,5 +1,5 @@
 .calendar-day-weekday {
-    font-size: 50px;
+    font-size: 100%;
     text-align: center;
     text-justify: center;
     font-weight: bold;
@@ -9,4 +9,34 @@
     flex: 1;
     margin: 10px;
     border: solid 3px white;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+.calendar-day-training {
+    width: 100%;
+    
+    background-color: beige;
+    font-size: 35%;
+    color: black;
+    
+    position: absolute;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    /* border: solid 1px black; */
+
+    /* box-sizing: border-box; */
+}
+
+.calendar-day-needle {
+    width:100%;
+    background-color: red;
+    height: 0.5%;
+    position: absolute;
 }

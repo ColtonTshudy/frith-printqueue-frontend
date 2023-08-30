@@ -27,12 +27,12 @@ const Calendar = ({ className, data }) => {
     // if(data) {
     //     test = Object.keys(data).length ? 'green' : 'black'
     // }
-    const [today, setDate] = useState(new Date());
+    const [today, setToday] = useState(new Date());
     const [appointments, setAppointments] = useState([])
     const ref = useRef();
 
     useEffect(() => {
-        setDate(new Date())
+        setToday(new Date())
         getAppointments(data, today, 3, setAppointments);
     }, [data])
 

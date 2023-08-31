@@ -17,7 +17,7 @@ import Clock from './components/clock'
 
 import Torgersen2 from './assets/p1840383511.jpg'
 
-const refresh_time = 5 //minutes to refresh
+const refresh_time = 1 //minutes to refresh
 
 //for testing
 // import PrinterData from './rsc/dummyprinterdata.json'

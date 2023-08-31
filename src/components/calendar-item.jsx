@@ -7,6 +7,11 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
     const testTitle = arr[Math.floor(Math.random()*arr.length)]
     // ONLY FOR TESR SERVER
     
+    // ONLY FOR TEST SERVER
+    const arr = ['solder', 'cnc', 'laser', 'wood', title]
+    const testTitle = arr[Math.floor(Math.random()*arr.length)]
+    // ONLY FOR TESR SERVER
+    
     const hoursInDay = closeTime - openTime
 
     const ref = useRef()
@@ -27,12 +32,18 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
         <div
             ref={ref}
             className="calendar-item-main"
+            className="calendar-item-main"
             style={{
                 height: `${duration / hoursInDay * 100}%`,
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
                 backgroundColor: (hour - startHour) >= 0 && (hour - startHour) < duration ? 'lime' : getColor(testTitle),
                 fontSize: `${height * 0.7}px`
+                backgroundColor: (hour - startHour) >= 0 && (hour - startHour) < duration ? 'lime' : getColor(testTitle),
+                fontSize: `${height * 0.7}px`
             }}>
+            <label className="calendar-item-title">
+                {getTitle(testTitle)}
+            </label>
             <label className="calendar-item-title">
                 {getTitle(testTitle)}
             </label>
@@ -51,10 +62,28 @@ const getColor = (title) => {
         return 'beige'
     if (str.includes("cnc"))
         return 'khaki'
+        return 'khaki'
     if (str.includes("laser"))
+        return 'lightsalmon'
         return 'lightsalmon'
     if (str.includes("wood"))
         return 'tan'
+    return 'pink'
+}
+
+//change the div color based on the task's status and remaining time
+const getTitle = (title) => {
+    const str = title.toLowerCase()
+
+    if (str.includes("solder"))
+        return 'Solder Training'
+    if (str.includes("cnc"))
+        return 'CNC Training'
+    if (str.includes("laser"))
+        return 'Laser Cutter Training'
+    if (str.includes("wood"))
+        return 'Woodshop Training'
+    return title
     return 'pink'
 }
 

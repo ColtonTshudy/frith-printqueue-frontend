@@ -23,6 +23,7 @@ const Capacity = ({ className, students }) => {
 
     return (
         <div className={className} id="attendance-body" ref={ref}>
+        <div className={className} id="attendance-body" ref={ref}>
             <label style={{
                 fontSize: `${fontHeight}px`,
             }}>

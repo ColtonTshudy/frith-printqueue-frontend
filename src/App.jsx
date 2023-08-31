@@ -84,7 +84,11 @@ function App() {
       console.log(err)
     })
 
-    setDate(new Date())
+    const testDate = new Date()
+    testDate.setDate(23)
+    testDate.setFullYear(2023)
+    testDate.setMonth(7) // August (jan is 0)
+    setDate(testDate)
 
     //reset timer
     return () => {

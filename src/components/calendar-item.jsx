@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import './css/calendar-item.css'
 
-const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday }) => {
+const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday, openSlots, totalSlots }) => {
     const hoursInDay = closeTime - openTime
 
     const ref = useRef()
@@ -28,10 +28,15 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                 backgroundColor: (hour - startHour) >= 0 && (hour - startHour) < duration && isToday ? 'lime' : getColor(title),
                 fontSize: `${height * 0.7}px`
             }}>
+            <label className="calendar-item-capacity">
+                {totalSlots - openSlots}/{totalSlots}
+            </label>
             <label className="calendar-item-title">
                 {getTitle(title)}
             </label>
-            <label>{new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</label>
+            <label className="calendar-item-time">
+                {new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+            </label>
         </div>
     )
 }

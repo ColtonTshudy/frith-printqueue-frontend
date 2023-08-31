@@ -50,7 +50,7 @@ const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime })
             <label className="calendar-day-weekday">{weekday[dayIndex]}</label>
             <div className="seperator" />
             <div className="calendar-day-container" >
-            {
+                {
                     trainings.length > 0 ?
                         trainings.map((training, index) =>
                             //map each training to its own box in the calendar window
@@ -73,7 +73,7 @@ const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime })
                         </div>
                 }
                 <div className="calendar-day-needle" style={{
-                    top: `${clamp((nowHour - openTime) / (closeTime-openTime) * 100, 0, 100)}%`,
+                    top: `${clamp((nowHour - openTime) / (closeTime - openTime) * 100, 0, 100)}%`,
                     opacity: isToday ? 1 : 0
                 }} />
             </div>

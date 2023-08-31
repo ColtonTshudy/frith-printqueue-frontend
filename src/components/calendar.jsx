@@ -40,11 +40,11 @@ const Calendar = ({ className, data, date, operatingHours }) => {
                         <CalendarDay
                             key={index}
                             className={`calendar-day blur ${index === 0 ? "" : "calendar-sub"}`}
-                            dayIndex={(date.getDay() + index)%7}
+                            dayIndex={(date.getDay() + index) % 7}
                             trainings={trainings}
                             date={date}
-                            openTime={operatingHours[date.getDay()] ? operatingHours[(date.getDay() + index)%7].open : 0}
-                            closeTime={operatingHours[date.getDay()] ? operatingHours[(date.getDay() + index)%7].close : 0}
+                            openTime={operatingHours[date.getDay()] ? operatingHours[(date.getDay() + index) % 7].open : 0}
+                            closeTime={operatingHours[date.getDay()] ? operatingHours[(date.getDay() + index) % 7].close : 0}
                         />
                     )
             }

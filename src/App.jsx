@@ -120,12 +120,11 @@ function App() {
       </div>
 
       <div className="right-screen">
-        <div className="top-box">
-          <div className="clock-box blur">
+        <div className="top-right-box blur">
+          <div className="clock-box">
             <Clock className="clock" operatingHours={hoursData} />
           </div>
-          <div className="capacity-box blur">
-            <label className="capacity-label">Lab Attendance</label>
+          <div className="capacity-box">
             <Attendance className="capacity" students={capacityData.data} max={55} />
           </div>
         </div>

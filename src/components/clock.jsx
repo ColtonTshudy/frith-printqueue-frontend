@@ -39,7 +39,7 @@ const Clock = ({ className, operatingHours }) => {
             </label>
             <div className="seperator" />
             <label style={{
-                fontSize: `${height * .15}px`,
+                fontSize: `${height * .2}px`,
                 fontStyle: 'italic'
             }}>
                 {

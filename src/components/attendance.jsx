@@ -4,7 +4,6 @@ import './css/attendance.css';
 const Capacity = ({ className, students }) => {
     //hooks
     const ref = useRef()
-    const [width, setWidth] = useState()
     const [height, setHeight] = useState()
 
     //get size
@@ -12,23 +11,24 @@ const Capacity = ({ className, students }) => {
         //get height of reference
         const handleResize = () => {
             setHeight(ref.current.clientHeight)
-            setWidth(ref.current.clientWidth)
         }
         handleResize()
         window.addEventListener("resize", handleResize);
     }, []);
 
-    //constants
-    const fontHeight = Math.min(width * 0.15, height * 0.8);
-
     return (
-        <div className={className} id="attendance-body" ref={ref}>
-            <label style={{
-                fontSize: `${fontHeight}px`,
-            }}>
-                {students} {students === 1 ? 'Student' : "Students"}
+        <div className={className} id="attendance-body" ref={ref} style={{
+            fontSize: `${height*0.8}px`,
+        }}>
+            <label id="attendance-label">
+                
             </label>
-        </div>
+            <div id="attendance-readout">
+                <label id="attendance-number">
+                    {students}
+                </label>
+            </div >
+        </div >
     )
 };
 

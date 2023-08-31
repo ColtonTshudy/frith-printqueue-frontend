@@ -1,7 +1,6 @@
 /*
 TODO
 - Add big "CLOSING IN X MINUTES" over schedule 15 from closing
-- Display opening time before opening, closing time before closing
 */
 
 import { useState, useEffect } from 'react'

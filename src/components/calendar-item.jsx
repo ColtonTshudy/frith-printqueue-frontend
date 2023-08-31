@@ -1,7 +1,14 @@
 import { useEffect, useState, useRef } from 'react'
 import './css/calendar-item.css'
 
+
+
 const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour }) => {
+    // ONLY FOR TEST SERVER
+    const arr = ['solder', 'cnc', 'laser', 'wood', title]
+    const testTitle = arr[Math.floor(Math.random()*arr.length)]
+    // ONLY FOR TESR SERVER
+    
     const hoursInDay = closeTime - openTime
 
     const ref = useRef()
@@ -30,11 +37,11 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
             style={{
                 height: `${duration / hoursInDay * 100}%`,
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
-                backgroundColor: (hour - startHour) >= 0 && (hour - startHour) < duration ? 'lime' : getColor(title),
+                backgroundColor: (hour - startHour) >= 0 && (hour - startHour) < duration ? 'lime' : getColor(testTitle),
                 fontSize: `${height * 0.7}px`
             }}>
             <label className="calendar-item-title">
-                {getTitle("laser")}
+                {getTitle(testTitle)}
             </label>
             <label>{new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</label>
         </div>
@@ -43,7 +50,8 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
 
 //change the div color based on the task's status and remaining time
 const getColor = (title) => {
-    const str = title.toLowerCase()
+    let str = title.toLowerCase()
+
     if (str.includes("solder"))
         return 'beige'
     if (str.includes("cnc"))
@@ -58,6 +66,7 @@ const getColor = (title) => {
 //change the div color based on the task's status and remaining time
 const getTitle = (title) => {
     const str = title.toLowerCase()
+
     if (str.includes("solder"))
         return 'Solder Training'
     if (str.includes("cnc"))

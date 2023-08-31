@@ -5,6 +5,7 @@
 #then, goto settings > settings manager > session and startup > application autostart
 #add command "sh /home/orangepi/frith-printqueue-frontend/start-python-host.sh"
 #add command "sh /home/orangepi/frith-printqueue-frontend/start-chrome.sh"
+#add command "sh /home/orangepi/frith-printqueue-frontend/start-middleware.sh"
 
 #build the distributable (only needed once)
 # cd /home/orangepi/frith-printqueue-frontend

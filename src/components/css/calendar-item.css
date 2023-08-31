@@ -19,6 +19,8 @@
 
     padding-left: 2%;
     padding-right: 2%;
+
+    text-shadow: 0 0 5px white;
 }
 
 .calendar-item-title {

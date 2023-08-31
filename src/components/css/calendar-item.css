@@ -1,4 +1,4 @@
-.calendar-item {
+.calendar-item-main {
     width: 100%;
     
     background-color: white;
@@ -16,4 +16,16 @@
 
     box-sizing: border-box;
     /* border-radius: 5px; */
+
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.calendar-item-title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex: 1;
+    overflow: hidden;
+    margin-right: 2%;
+    
 }

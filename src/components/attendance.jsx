@@ -13,13 +13,22 @@ const Capacity = ({ className, data }) => {
 
     //get size
     useEffect(() => {
-        setHeight(ref.current.clientHeight)
-        setWidth(ref.current.clientWidth)
-    }, [])
+        //get height of reference
+        const handleResize = () => {
+            setHeight(ref.current.clientHeight)
+            setWidth(ref.current.clientWidth)
+        }
+        handleResize()
+        window.addEventListener("resize", handleResize);
+
+        var timer = setInterval(() => setDate(new Date()), 1000)
+        return function cleanup() {
+            clearInterval(timer)
+        }
+    }, []);
 
     //constants
     const fontHeight = Math.min(width * 0.15, height * 0.8);
-    const borderRadius = Math.min(width, height) * 0.3;
 
     //input conditioning
     const percentage = isNaN(students) ? 0 : 100 * students / max
@@ -31,12 +40,9 @@ const Capacity = ({ className, data }) => {
     }
 
     return (
-        <div className={className} id="attendance-body" ref={ref} style={{
-            borderRadius: `${borderRadius}px`,
-        }}>
+        <div className={className} id="attendance-body" ref={ref}>
             <label style={{
                 fontSize: `${fontHeight}px`,
-                lineHeight: `${height}px`,
             }}>
                 {students} Students
             </label>

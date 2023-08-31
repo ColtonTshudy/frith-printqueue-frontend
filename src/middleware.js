@@ -27,10 +27,7 @@ app.use('/printer', cors(corsOptions), (req, res) => {
 
 app.post('/canvas-set', (req, res) => {
     groupID = req.body.groupID
-    console.log(groupID)
     res.send(req.body)
-    // const request_url = `https://vt.instructure.com/api/v1/appointment_groups/${groupID}?access_token=4511~ANBuOoWGbFZFzUNNmXtqOod8pxkDVpyHahwBGPZAhJ72LtYmgyAZrnl2IhSZ48vY&include_past_appointments=true&scope=manageable&per_page=1000&page=1`
-    // req.pipe(request(request_url)).pipe(res)
 })
 
 app.use('/canvas-get', (req, res) => {

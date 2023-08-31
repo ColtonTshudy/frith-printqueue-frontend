@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from 'react'
 import './css/calendar-item.css'
 
-const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday=true }) => {
+const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday = true, openSlots, totalSlots }) => {
     // ONLY FOR TEST SERVER
     const arr = ['solder', 'cnc', 'laser', 'wood', title]
-    const testTitle = arr[Math.floor(Math.random()*arr.length)]
+    const testTitle = arr[Math.floor(Math.random() * arr.length)]
     // ONLY FOR TESR SERVER
-    
+
     const hoursInDay = closeTime - openTime
 
     const ref = useRef()
@@ -33,10 +33,15 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                 backgroundColor: (hour - startHour) >= 0 && (hour - startHour) < duration && isToday ? 'lime' : getColor(testTitle),
                 fontSize: `${height * 0.7}px`
             }}>
+            <label className="calendar-item-capacity">
+                {totalSlots - openSlots}/{totalSlots}
+            </label>
             <label className="calendar-item-title">
                 {getTitle(testTitle)}
             </label>
-            <label>{new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</label>
+            <label className="calendar-item-time">
+                {new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+            </label>
         </div>
     )
 }

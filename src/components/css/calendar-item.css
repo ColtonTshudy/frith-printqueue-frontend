@@ -10,7 +10,7 @@
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     border-bottom: solid 1px black;
 
@@ -28,5 +28,24 @@
     text-overflow: ellipsis;
     flex: 1;
     overflow: hidden;
-    margin-right: 2%;
+    margin-right: 5%;
+}
+
+.calendar-item-capacity {
+    height: 100%;
+    right: 20%;
+
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-right: 1%;
+
+    text-align: center;
+    text-shadow: none;
+}
+
+.calendar-item-time {
+    min-width: 20%;
+    text-align: right;
 }

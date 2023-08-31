@@ -1,8 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import './css/calendar-item.css'
 
-
-
 const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour }) => {
     // ONLY FOR TEST SERVER
     const arr = ['solder', 'cnc', 'laser', 'wood', title]

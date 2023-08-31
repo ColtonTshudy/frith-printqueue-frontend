@@ -48,22 +48,7 @@ const getColor = (title) => {
         return 'lightsalmon'
     if (str.includes("wood"))
         return 'tan'
-    return 'pink'
-}
-
-//change the div color based on the task's status and remaining time
-const getTitle = (title) => {
-    const str = title.toLowerCase()
-
-    if (str.includes("solder"))
-        return 'Solder Training'
-    if (str.includes("cnc"))
-        return 'CNC Training'
-    if (str.includes("laser"))
-        return 'Laser Cutter Training'
-    if (str.includes("wood"))
-        return 'Woodshop Training'
-    return title
+    return 'white'
 }
 
 //convert seconds to HH:MM:SS

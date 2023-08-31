@@ -53,12 +53,12 @@ const getColor = (title) => {
     if (str.includes("solder"))
         return 'beige'
     if (str.includes("cnc"))
-        return 'pink'
+        return 'khaki'
     if (str.includes("laser"))
-        return 'paleturquoise'
+        return 'lightsalmon'
     if (str.includes("wood"))
         return 'tan'
-    return 'white'
+    return 'pink'
 }
 
 //change the div color based on the task's status and remaining time

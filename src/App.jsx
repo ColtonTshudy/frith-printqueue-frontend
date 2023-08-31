@@ -74,8 +74,8 @@ function App() {
       console.log(err)
     })
 
-    // setDate(new Date('2023-08-23T12:30:00'))
-    setDate(new Date())
+    setDate(new Date('2023-08-23T12:30:00'))
+    // setDate(new Date())
 
     //reset timer
     return () => {

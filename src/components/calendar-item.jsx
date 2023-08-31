@@ -15,11 +15,6 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
         }
         handleResize()
         window.addEventListener("resize", handleResize);
-
-        var timer = setInterval(() => setDate(new Date()), 1000)
-        return function cleanup() {
-            clearInterval(timer)
-        }
     }, [duration]);
 
     //return a div with 1 or 2 labels; printID and time remaining

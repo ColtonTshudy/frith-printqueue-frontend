@@ -20,11 +20,6 @@ const Capacity = ({ className, data }) => {
         }
         handleResize()
         window.addEventListener("resize", handleResize);
-
-        var timer = setInterval(() => setDate(new Date()), 1000)
-        return function cleanup() {
-            clearInterval(timer)
-        }
     }, []);
 
     //constants

@@ -19,6 +19,8 @@
 
     padding-left: 2%;
     padding-right: 2%;
+
+    text-shadow: 1px 1px 5spx white;
 }
 
 .calendar-item-title {
@@ -27,5 +29,4 @@
     flex: 1;
     overflow: hidden;
     margin-right: 2%;
-    
 }

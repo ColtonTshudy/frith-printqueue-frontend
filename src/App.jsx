@@ -121,12 +121,12 @@ function App() {
 
       <div className="right-screen">
         <div className="top-box">
+          <div className="clock-box blur">
+            <Clock className="clock" operatingHours={hoursData} />
+          </div>
           <div className="capacity-box blur">
             <label className="capacity-label">Lab Attendance</label>
             <Attendance className="capacity" students={capacityData.data} max={55} />
-          </div>
-          <div className="clock-box blur">
-            <Clock className="clock" operatingHours={hoursData} />
           </div>
         </div>
         <Calendar className="calendar" data={trainingsData} date={date} operatingHours={hoursData} />

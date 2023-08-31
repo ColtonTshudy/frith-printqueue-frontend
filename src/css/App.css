@@ -129,27 +129,32 @@ body {
 }
 
 .top-box {
-  height: 25%;
-  width: 100%;
+  position: absolute;
+  
+  height: 35%;
+  width: 30%;
+  right: 0%;
+  top: 0%;
+
+  
   margin-bottom: 2%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: end;
 }
 
 .capacity-box{
   /* position:absolute; */
-  height: 100%;
-  width: 50%;
+  height: 40%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
 
-  border-bottom-right-radius: 75px;
-  border-bottom-left-radius: 75px;
-  margin-left: 4%;
-
+  border-radius: 50px;
 }
 
 .capacity {
@@ -161,13 +166,13 @@ body {
 
 .capacity-label {
   margin-top: 10px;
-  font-size: 50px;
+  font-size: 40px;
   text-shadow: 1px 1px 5px black;
 }
 
 .clock-box {
-  height: 75%;
-  width: 40%;
+  height: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,4 +186,5 @@ body {
 .calendar {
   flex: 1; /* Fill remaining height */
   width: 100%;
+  font-weight: bold;
 }

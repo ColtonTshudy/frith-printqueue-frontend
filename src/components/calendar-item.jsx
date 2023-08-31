@@ -37,7 +37,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                 {totalSlots - openSlots}/{totalSlots}
             </label>
             <label className="calendar-item-title">
-                {getTitle(testTitle)}
+                &nbsp;{getTitle(testTitle)}
             </label>
             <label className="calendar-item-time">
                 {new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
@@ -50,27 +50,27 @@ const getColor = (title) => {
     let str = title.toLowerCase()
 
     if (str.includes("solder"))
-        return 'beige'
+        return 'darkblue'
     if (str.includes("cnc"))
-        return 'khaki'
+        return 'darkgreen'
     if (str.includes("laser"))
-        return 'lightsalmon'
+        return 'purple'
     if (str.includes("wood"))
-        return 'tan'
-    return 'pink'
+        return 'brown'
+    return 'violet'
 }
 
 const getTitle = (title) => {
     const str = title.toLowerCase()
 
     if (str.includes("solder"))
-        return 'Solder Training'
+        return 'Solder'
     if (str.includes("cnc"))
-        return 'CNC Training'
+        return 'CNC'
     if (str.includes("laser"))
-        return 'Laser Cutter Training'
+        return 'Laser'
     if (str.includes("wood"))
-        return 'Woodshop Training'
+        return 'Woodshop'
     return title
 }
 

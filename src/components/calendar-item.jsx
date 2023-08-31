@@ -9,21 +9,33 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
 
     //update the current epoch every second
     useEffect(() => {
-        setHeight(ref.current.clientHeight)
+        //get height of reference
+        const handleResize = () => {
+            setHeight(ref.current.clientHeight)
+        }
+        handleResize()
+        window.addEventListener("resize", handleResize);
+
+        var timer = setInterval(() => setDate(new Date()), 1000)
+        return function cleanup() {
+            clearInterval(timer)
+        }
     }, [duration]);
 
     //return a div with 1 or 2 labels; printID and time remaining
     return (
         <div
             ref={ref}
-            className="calendar-item"
+            className="calendar-item-main"
             style={{
                 height: `${duration / hoursInDay * 100}%`,
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
                 backgroundColor: (hour - startHour) >= 0 && (hour - startHour) < duration ? 'lime' : getColor(title),
-                // fontSize: `${height * 0.7}px`
+                fontSize: `${height * 0.7}px`
             }}>
-            <label>{title}</label>
+            <label className="calendar-item-title">
+                {getTitle(title)}
+            </label>
             <label>{new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</label>
         </div>
     )
@@ -31,7 +43,8 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
 
 //change the div color based on the task's status and remaining time
 const getColor = (title) => {
-    const str = title.toLowerCase()
+    let str = title.toLowerCase()
+
     if (str.includes("solder"))
         return 'beige'
     if (str.includes("cnc"))
@@ -41,6 +54,21 @@ const getColor = (title) => {
     if (str.includes("wood"))
         return 'tan'
     return 'white'
+}
+
+//change the div color based on the task's status and remaining time
+const getTitle = (title) => {
+    const str = title.toLowerCase()
+
+    if (str.includes("solder"))
+        return 'Solder Training'
+    if (str.includes("cnc"))
+        return 'CNC Training'
+    if (str.includes("laser"))
+        return 'Laser Cutter Training'
+    if (str.includes("wood"))
+        return 'Woodshop Training'
+    return title
 }
 
 //convert seconds to HH:MM:SS

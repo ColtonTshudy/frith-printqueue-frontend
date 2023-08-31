@@ -50,14 +50,14 @@ const getColor = (title) => {
     let str = title.toLowerCase()
 
     if (str.includes("solder"))
-        return 'darkblue'
+        return 'rgb(117, 120, 123)'
     if (str.includes("cnc"))
         return 'darkgreen'
     if (str.includes("laser"))
-        return 'purple'
+        return 'rgb(198, 70, 0)'
     if (str.includes("wood"))
-        return 'brown'
-    return 'violet'
+        return 'rgb(134, 31, 65)'
+    return 'purple'
 }
 
 const getTitle = (title) => {

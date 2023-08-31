@@ -42,7 +42,6 @@ const PrintItem = ({ className, printID, status, startTime, duration }) => {
         fontStyle: "italic",
         opacity: "0.7",
         textAlign: "center",
-        fontWeight: "normal",
       }}>
         {timeRemaining}
       </label>

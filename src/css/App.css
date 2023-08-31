@@ -12,6 +12,8 @@ body {
   font-family: San Francisco;
 
   z-index: -10;
+
+  font-weight: bold;
 }
 
 .picture-background {

@@ -11,6 +11,7 @@ const Clock = ({ className, operatingHours }) => {
     //for some reason, checking this boolean fixes errors. Comparing to undefined does not work
     const closeTime = operatingHours[date.getDay()] ? operatingHours[date.getDay()].close : ''
     const openTimeTomorrow = operatingHours[date.getDay()] ? operatingHours[(date.getDay()+1)%7].open : ''
+    const hourFloat = date.getHours()+date.getMinutes()/60
 
     //setup
     useEffect(() => {
@@ -27,8 +28,6 @@ const Clock = ({ className, operatingHours }) => {
         }
     }, []);
 
-    
-
     //render
     return (
         <div className={className} id="clock-main" ref={ref}>
@@ -44,7 +43,7 @@ const Clock = ({ className, operatingHours }) => {
                 fontStyle: 'italic'
             }}>
                 {
-                    date.getHours()+date.getMinutes()/60 > closeTime ?
+                    hourFloat < closeTime && hourFloat > openTimeTomorrow ?
                     `Closing at ${formatTime(closeTime)}` :
                     `Opening at ${formatTime(openTimeTomorrow)}`
                 }

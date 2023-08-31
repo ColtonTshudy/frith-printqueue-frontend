@@ -50,11 +50,22 @@ const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime })
             <label className="calendar-day-weekday">{weekday[dayIndex]}</label>
             <div className="seperator" />
             <div className="calendar-day-container" >
-                {
+            {
                     trainings.length > 0 ?
                         trainings.map((training, index) =>
                             //map each training to its own box in the calendar window
-                            <CalendarItem key={index} openTime={openTime} closeTime={closeTime} duration={durations[index]} startHour={startHours[index]} startTime={training.start_at} title={training.title} hour={nowHour} isToday={isToday} />
+                            <CalendarItem
+                                key={index}
+                                openTime={openTime}
+                                closeTime={closeTime}
+                                duration={durations[index]}
+                                startHour={startHours[index]}
+                                startTime={training.start_at}
+                                title={training.title}
+                                hour={nowHour}
+                                isToday={isToday}
+                                openSlots={training.available_slots}
+                                totalSlots={training.participants_per_appointment} />
                         )
                         :
                         <div className="calendar-day-no-trainings">

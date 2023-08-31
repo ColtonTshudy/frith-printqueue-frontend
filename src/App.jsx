@@ -28,7 +28,7 @@ import CapacityData from './rsc/capacity.json'
 
 function App() {
   const [printData, setPrintData] = useState([])
-  const [capacityData, setCapacityData] = useState([])
+  const [capacityData, setAttendanceData] = useState([])
   const [trainingsData, setTrainingsData] = useState([])
   const [hoursData, setHoursData] = useState([])
   const [date, setDate] = useState(new Date())
@@ -56,7 +56,17 @@ function App() {
     })
 
     //fetch capacity data
-    setCapacityData(CapacityData) //dummy data
+    // setCapacityData(CapacityData) //dummy data
+    fetch("http://localhost:3100/attendance").then(res => {
+      if (res.status >= 400) {
+        throw new Error("Server responds with error!");
+      }
+      return res.json()
+    }).then(data => {
+      setAttendanceData(data)
+    }).catch(err => {
+      console.log(err)
+    })
 
     //fetch opening/closing hours data
     setHoursData(HoursData) //dummy data
@@ -110,7 +120,7 @@ function App() {
         <div className="top-box">
           <div className="capacity-box blur">
             <label className="capacity-label">Lab Attendance</label>
-            <Attendance className="capacity" data={capacityData} />
+            <Attendance className="capacity" students={capacityData.data} max={55} />
           </div>
           <div className="clock-box blur">
             <Clock className="clock" operatingHours={hoursData} />

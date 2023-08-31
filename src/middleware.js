@@ -1,3 +1,8 @@
+/**
+ * This backend works as a reverse proxy for the frontend
+ * This backend is required in order to avoid CORS issues
+ */
+
 import express from 'express'
 import request from 'request'
 import cors from 'cors'
@@ -32,6 +37,11 @@ app.post('/canvas-set', (req, res) => {
 
 app.use('/canvas-get', (req, res) => {
     const request_url = `https://vt.instructure.com/api/v1/appointment_groups/${groupID}?access_token=4511~ANBuOoWGbFZFzUNNmXtqOod8pxkDVpyHahwBGPZAhJ72LtYmgyAZrnl2IhSZ48vY&include_past_appointments=true&scope=manageable&per_page=1000&page=1`
+    req.pipe(request(request_url)).pipe(res)
+})
+
+app.use('/attendance', cors(corsOptions), (req, res) => {
+    const request_url = 'https://script.googleusercontent.com/a/macros/vt.edu/echo?user_content_key=nKWY4qLTx0vTQeWSnPyjAnRAhARb95XzyLkixuwTb7MOjqiG0MwakvjqBJW59r7PqOY1Pa6_YtKcDSpGYUzl1-54F0uTllM3OJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMi80zadyHLKAarhBb2BfrXVl-rd9Uyy2sFYpSTzj3t-tXwmuVYFupTB6mg3L5aTj8PALN_4z9aVoSDNru01_t1P0AP2J_hiI9hrX0EYVkvTVYPnlpXWt4fo96t4mNCBQCpmJWaOKqYVLBA4WohCEJxpAIMwEjH-l4LgANXR6ofjBFY23qEmEmfsxUCojZ7NL_&lib=MtiAyd25s3XO9h02zx9o2nfYkWc0nwg2q'
     req.pipe(request(request_url)).pipe(res)
 })
 

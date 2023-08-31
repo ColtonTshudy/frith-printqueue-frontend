@@ -1,4 +1,5 @@
 {
-    "current": 25,
-    "max": 55
+    "status": 200,
+    "message": "success",
+    "data": 2
 }

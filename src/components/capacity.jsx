@@ -1,11 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import './css/capacity.css';
 
-const Capacity = ({ className, data }) => {
-    //unpack data
-    const students = data.current
-    const max = data.max
-
+const Capacity = ({ className, students, max }) => {
     //hooks
     const ref = useRef()
     const [width, setWidth] = useState()

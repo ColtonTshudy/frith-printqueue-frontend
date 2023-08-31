@@ -8,8 +8,8 @@ import CalendarDay from './calendar-day'
 import './css/calendar.css'
 
 // const DEBUG_OFFSET = -365*3+30*3-12; //offset for class_old3
-const DEBUG_OFFSET = -7; //offset for class_ula
-// const DEBUG_OFFSET = 0;
+// const DEBUG_OFFSET = -8; //offset for class_ula
+const DEBUG_OFFSET = 0;
 
 const class_old = "course_109922";
 const class_old2 = "course_99575";
@@ -22,35 +22,36 @@ const class_id = class_ula;
 const url1 = "http://localhost:3100/canvas-set"
 const url2 = "http://localhost:3100/canvas-get"
 
-const Calendar = ({ className, data }) => {
+const Calendar = ({ className, data, date, operatingHours }) => {
     // let test = 'black'
     // if(data) {
     //     test = Object.keys(data).length ? 'green' : 'black'
     // }
-    const [today, setToday] = useState(new Date());
     const [appointments, setAppointments] = useState([])
     const ref = useRef();
 
     useEffect(() => {
-        setToday(new Date())
-        getAppointments(data, today, 3, setAppointments);
+        getAppointments(data, date, 3, setAppointments);
     }, [data])
-
-    useEffect(() => {
-        // console.log(appointments)
-    }, [appointments])
 
     return (
         <div className={className} ref={ref} id="calendar-main">
-            {appointments === undefined ? <></> :
-                appointments.map((trainings, index) =>
-                    <CalendarDay
-                        key={index}
-                        className={`calendar-day blur ${index === 0 ? "" : "calendar-sub"}`}
-                        day={today.getDay() + index}
-                        trainings={trainings}
-                    />
-                )}
+            {
+                appointments === undefined ?
+                    <></>
+                    :
+                    appointments.map((trainings, index) =>
+                        <CalendarDay
+                            key={index}
+                            className={`calendar-day blur ${index === 0 ? "" : "calendar-sub"}`}
+                            dayIndex={(date.getDay() + index)%7}
+                            trainings={trainings}
+                            date={date}
+                            openTime={operatingHours[date.getDay()] ? operatingHours[(date.getDay() + index)%7].open : 0}
+                            closeTime={operatingHours[date.getDay()] ? operatingHours[(date.getDay() + index)%7].close : 0}
+                        />
+                    )
+            }
             {/* <CalendarDay className="calendar-day blur" day={today.getDay()} trainings={appointments[0]} />
             <CalendarDay className="calendar-day calendar-sub blur" day={today.getDay() + 1} trainings={appointments[1]} />
             <CalendarDay className="calendar-day calendar-sub blur" day={today.getDay() + 2} trainings={appointments[2]} /> */}

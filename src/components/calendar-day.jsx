@@ -1,18 +1,12 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
+import CalendarItem from './calendar-item'
 import './css/calendar-day.css'
 
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-const refreshRate = 1 //minutes until needle position refresh
-
-const openTime = 9
-const closeTime = 21
-const hoursInDay = closeTime - openTime; //total hours in a day
-
-const Calendar = ({ className, day, trainings }) => {
+const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime }) => {
     // console.log(trainings)
 
-    const [now, setNow] = useState(new Date())
     const [nowHour, setNowHour] = useState() // hour of the day in float form (0 to 24)
     const [durations, setDurations] = useState([])
     const [startHours, setStartHours] = useState([])
@@ -38,44 +32,37 @@ const Calendar = ({ className, day, trainings }) => {
         setStartHours(startPercentsArr)
 
         //initial set time
-        setNow(new Date())
-        setNowHour((now.getHours() + now.getMinutes() / 60))
+        setNowHour((date.getHours() + date.getMinutes() / 60))
 
-        const timer = setInterval(() => {
-            setNow(new Date())
-            setNowHour((now.getHours() + now.getMinutes() / 60))
-        }, 1000 * 60 * refreshRate)
-        return function cleanup() {
-            clearInterval(timer)
-        }
+        // console.log(durations[0] / hoursInDay)
+        // console.log((startHours[0] - openTime) / hoursInDay)
+        // console.log((startHours[1] - openTime) / hoursInDay)
+
     }, [trainings]);
 
-    // console.log(((now.getHours() + now.getMinutes() / 60) - openTime) / closeTime * 100)
+    // console.log(date)
+    // console.log(((date.getHours() + date.getMinutes() / 60) - openTime) / closeTime * 100)
     // console.log(clamp((nowHour - openTime) / closeTime * 100, 0, 100))
-    // console.log(now)
 
     return (
         <div className={className}>
-            <label className="calendar-day-weekday">{weekday[day % 7]}</label>
+            <label className="calendar-day-weekday">{weekday[dayIndex]}</label>
             <div className="seperator" />
-            <div className="calendar-day-container">
-                {trainings.map((training, index) =>
-                    // console.log(index)
-                    <div
-                        className="calendar-day-training"
-                        key={index}
-                        style={{
-                            height: `calc(100% * ${durations[index] / hoursInDay})`,
-                            top: `${(startHours[index] - openTime) / closeTime * 100}%`,
-                            backgroundColor: (nowHour - startHours[index]) > 0 && (nowHour - startHours[index])  < durations[index]  ? 'lime' : ''
-                        }}>
-                        <label>{training.title}</label>
-                        <label>{new Date(training.start_at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</label>
-                    </div>
-                )}
+            <div className="calendar-day-container" >
+                {
+                    trainings.length > 0 ?
+                        trainings.map((training, index) =>
+                            //map each training to its own box in the calendar window
+                            <CalendarItem key={index} openTime={openTime} closeTime={closeTime} duration={durations[index]} startHour={startHours[index]} startTime={training.start_at} title={training.title} hour={nowHour} />
+                        )
+                        :
+                        <div className="calendar-day-no-trainings">
+                            no trainings
+                        </div>
+                }
                 <div className="calendar-day-needle" style={{
-                    top: `${clamp((nowHour - openTime) / closeTime * 100, 0, 100)}%`,
-                    opacity: day === now.getDay() ? 1 : 0
+                    top: `${clamp((nowHour - openTime) / (closeTime-openTime) * 100, 0, 100)}%`,
+                    opacity: dayIndex === date.getDay() ? 1 : 0
                 }} />
             </div>
         </div>

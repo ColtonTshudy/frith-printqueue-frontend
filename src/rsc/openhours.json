@@ -1,37 +1,37 @@
 [
     {
         "day": "sunday",
-        "open": 11,
+        "open": 12,
         "close": 16
     },
     {
         "day": "monday",
-        "open": 8,
+        "open": 9,
         "close": 21
     },
     {
         "day": "tuesday",
-        "open": 8,
+        "open": 9.5,
         "close": 21
     },
     {
         "day": "wednesday",
-        "open": 8,
+        "open": 9,
         "close": 21
     },
     {
         "day": "thursday",
-        "open": 8,
+        "open": 9.5,
         "close": 21
     },
     {
         "day": "friday",
-        "open": 8,
-        "close": 18
+        "open": 9,
+        "close": 17
     },
     {
         "day": "saturday",
-        "open": 11,
+        "open": 12,
         "close": 16
     }
 ]

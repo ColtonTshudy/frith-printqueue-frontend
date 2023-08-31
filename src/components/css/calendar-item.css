@@ -1,0 +1,19 @@
+.calendar-item {
+    width: 100%;
+    
+    background-color: white;
+    font-size: 35%;
+
+    color: black;
+    
+    position: absolute;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    border-bottom: solid 1px black;
+
+    box-sizing: border-box;
+    /* border-radius: 5px; */
+}

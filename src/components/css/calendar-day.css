@@ -12,26 +12,12 @@
 
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     position: relative;
-}
 
-.calendar-day-training {
-    width: 100%;
-    
-    background-color: beige;
-    font-size: 35%;
-    color: black;
-    
-    position: absolute;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    /* border: solid 1px black; */
-
-    /* box-sizing: border-box; */
+    padding: 10px;
 }
 
 .calendar-day-needle {
@@ -39,4 +25,10 @@
     background-color: red;
     height: 0.5%;
     position: absolute;
+}
+
+.calendar-day-no-trainings {
+    font-style: italic;
+    text-align: center;
+    /* flex: 1; */
 }

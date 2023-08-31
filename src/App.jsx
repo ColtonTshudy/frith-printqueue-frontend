@@ -18,7 +18,7 @@ import Clock from './components/clock'
 
 import Torgersen2 from './assets/p1840383511.jpg'
 
-const refresh_time = 1 //minutes to refresh
+const refresh_time = 5 //minutes to refresh
 
 //for testing
 // import PrinterData from './rsc/dummyprinterdata.json'
@@ -74,6 +74,7 @@ function App() {
       console.log(err)
     })
 
+    // setDate(new Date('2023-08-23T12:30:00'))
     setDate(new Date())
 
     //reset timer
@@ -113,10 +114,10 @@ function App() {
             <Attendance className="capacity" data={capacityData} />
           </div>
           <div className="clock-box blur">
-            <Clock className="clock" data={hoursData} />
+            <Clock className="clock" operatingHours={hoursData} />
           </div>
         </div>
-        <Calendar className="calendar" data={trainingsData} />
+        <Calendar className="calendar" data={trainingsData} date={date} operatingHours={hoursData} />
       </div>
 
     </div >

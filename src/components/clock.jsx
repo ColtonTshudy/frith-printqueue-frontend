@@ -1,24 +1,33 @@
 import { useEffect, useState, useRef } from 'react'
 import './css/clock.css'
 
-const Clock = ({ className, data }) => {
+const Clock = ({ className, operatingHours }) => {
     //hooks
     const [date, setDate] = useState(new Date());
     const [height, setHeight] = useState()
     const ref = useRef()
 
-    //constants
-    const closeTime = data[date.getDay()] ? data[date.getDay()].close : ''
+    //get the closing time today and opening time tomorrow
+    //for some reason, checking this boolean fixes errors. Comparing to undefined does not work
+    const closeTime = operatingHours[date.getDay()] ? operatingHours[date.getDay()].close : ''
+    const openTimeTomorrow = operatingHours[date.getDay()] ? operatingHours[(date.getDay()+1)%7].open : ''
 
     //setup
     useEffect(() => {
-        setHeight(ref.current.clientHeight)
+        //get height of reference
+        const handleResize = () => {
+            setHeight(ref.current.clientHeight)
+        }
+        handleResize()
+        window.addEventListener("resize", handleResize);
 
         var timer = setInterval(() => setDate(new Date()), 1000)
         return function cleanup() {
             clearInterval(timer)
         }
     }, []);
+
+    
 
     //render
     return (
@@ -34,9 +43,13 @@ const Clock = ({ className, data }) => {
                 fontSize: `${height * .15}px`,
                 fontStyle: 'italic'
             }}>
-                {`Closing at ${formatTime(closeTime)}`}
+                {
+                    date.getHours()+date.getMinutes()/60 > closeTime ?
+                    `Closing at ${formatTime(closeTime)}` :
+                    `Opening at ${formatTime(openTimeTomorrow)}`
+                }
             </label>
-        </div > 
+        </div >
     )
 };
 

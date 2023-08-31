@@ -6,6 +6,7 @@ const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday
 
 const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime }) => {
     // console.log(trainings)
+    const isToday = dayIndex === date.getDay()
 
     const [nowHour, setNowHour] = useState() // hour of the day in float form (0 to 24)
     const [durations, setDurations] = useState([])
@@ -53,7 +54,7 @@ const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime })
                     trainings.length > 0 ?
                         trainings.map((training, index) =>
                             //map each training to its own box in the calendar window
-                            <CalendarItem key={index} openTime={openTime} closeTime={closeTime} duration={durations[index]} startHour={startHours[index]} startTime={training.start_at} title={training.title} hour={nowHour} />
+                            <CalendarItem key={index} openTime={openTime} closeTime={closeTime} duration={durations[index]} startHour={startHours[index]} startTime={training.start_at} title={training.title} hour={nowHour} isToday={isToday} />
                         )
                         :
                         <div className="calendar-day-no-trainings">
@@ -62,7 +63,7 @@ const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime })
                 }
                 <div className="calendar-day-needle" style={{
                     top: `${clamp((nowHour - openTime) / (closeTime-openTime) * 100, 0, 100)}%`,
-                    opacity: dayIndex === date.getDay() ? 1 : 0
+                    opacity: isToday ? 1 : 0
                 }} />
             </div>
         </div>

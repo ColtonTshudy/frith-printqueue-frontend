@@ -1,13 +1,10 @@
 #calendar-main {
-
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: baseline;
 
     font-size: 50px;
-
-
 }
 
 .calendar-day {

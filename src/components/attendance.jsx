@@ -23,12 +23,12 @@ const Capacity = ({ className, students }) => {
         <div className={className} id="attendance-body" ref={ref} style={{
             fontSize: `${fontSize}px`,
         }}>
-            <label style={{
+            {/* <label style={{
                 fontSize: "20%",
                 marginBottom: "1%"
             }}>
                 Students
-            </label>
+            </label> */}
             <div id="attendance-readout">
 
                 <label id="attendance-number">

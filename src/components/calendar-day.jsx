@@ -55,6 +55,7 @@ const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime })
                         trainings.map((training, index) =>
                             //map each training to its own box in the calendar window
                             <CalendarItem
+                                className={isToday ? "calendar-day-item-today" : "calendar-day-item-future"}
                                 key={index}
                                 openTime={openTime}
                                 closeTime={closeTime}

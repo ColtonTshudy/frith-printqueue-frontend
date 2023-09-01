@@ -1,6 +1,7 @@
 /*
 TODO
 - Add big "CLOSING IN X MINUTES" over schedule 15 from closing
+- Figure out why times before 12PM mess up the clock string: "open time 0:00"
 */
 
 import { useState, useEffect } from 'react'

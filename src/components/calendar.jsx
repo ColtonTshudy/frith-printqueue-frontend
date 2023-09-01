@@ -17,7 +17,7 @@ const class_old3 = "course_121352";
 const class_ula = "course_162912"; //test server
 const class_production = "course_180929"; //frith F23
 
-const class_id = class_production;
+const class_id = class_ula;
 
 const url1 = "http://localhost:3100/canvas-set"
 const url2 = "http://localhost:3100/canvas-get"

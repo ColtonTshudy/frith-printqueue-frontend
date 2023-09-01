@@ -9,6 +9,7 @@
 
 #build the distributable (only needed once)
 # cd /home/orangepi/frith-printqueue-frontend
+# git pull
 # npm i
 # npm run build
 

@@ -21,14 +21,28 @@
 }
 
 .calendar-day-needle {
-    width:100%;
-    background-color: red;
-    height: 0.5%;
     position: absolute;
+    width:6%;
+    /* background-color: red; */
+    /* height: 0.5%; */
+    left: 0%;
+
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 30px solid white;
 }
 
 .calendar-day-no-trainings {
     font-style: italic;
     text-align: center;
     /* flex: 1; */
+}   
+
+.calendar-day-item-today {
+    width: 92%;
+    right: 0%;
+}
+
+.calendar-day-item-future {
+    width: 100%;
 }

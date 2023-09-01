@@ -83,7 +83,11 @@ function App() {
       console.log(err)
     })
 
-    setDate(new Date())
+    const testDate = new Date()
+    testDate.setDate(23)
+    testDate.setFullYear(2023)
+    testDate.setMonth(7) // August (jan is 0)
+    setDate(testDate)
 
     //reset timer
     return () => {
@@ -102,7 +106,8 @@ function App() {
           <div className="fullscreen youtube">
             <iframe className="youtube" src="https://www.youtube.com/embed/4LMjbWDYsGs?si=-yHWly8StYjeS8KN&autoplay=1&mute=1&loop=1&playsinline=1&controls=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-          : <></>
+          :
+          <></>
       }
 
       <div className="left-screen">
@@ -116,14 +121,9 @@ function App() {
       </div>
 
       <div className="right-screen">
-        <div className="top-box">
-          <div className="capacity-box blur">
-            <label className="capacity-label">Lab Attendance</label>
-            <Attendance className="capacity" students={capacityData.data} max={55} />
-          </div>
-          <div className="clock-box blur">
-            <Clock className="clock" operatingHours={hoursData} />
-          </div>
+        <div className="top-right-box blur">
+          <Attendance className="capacity" students={capacityData.data} max={55} />
+          <Clock className="clock" operatingHours={hoursData} />
         </div>
         <Calendar className="calendar" data={trainingsData} date={date} operatingHours={hoursData} />
       </div>

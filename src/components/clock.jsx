@@ -5,6 +5,7 @@ const Clock = ({ className, operatingHours }) => {
     //hooks
     const [date, setDate] = useState(new Date());
     const [height, setHeight] = useState()
+    const [width, setWidth] = useState()
     const ref = useRef()
 
     //get the closing time today and opening time tomorrow
@@ -12,12 +13,14 @@ const Clock = ({ className, operatingHours }) => {
     const closeTime = operatingHours[date.getDay()] ? operatingHours[date.getDay()].close : ''
     const openTimeTomorrow = operatingHours[date.getDay()] ? operatingHours[(date.getDay()+1)%7].open : ''
     const hourFloat = date.getHours()+date.getMinutes()/60
+    const fontSize = Math.min(height*0.5, width*0.2)
 
     //setup
     useEffect(() => {
         //get height of reference
         const handleResize = () => {
             setHeight(ref.current.clientHeight)
+            setWidth(ref.current.clientWidth)
         }
         handleResize()
         window.addEventListener("resize", handleResize);
@@ -32,14 +35,14 @@ const Clock = ({ className, operatingHours }) => {
     return (
         <div className={className} id="clock-main" ref={ref}>
             <label style={{
-                fontSize: `${height * 0.5}px`,
+                fontSize: `${fontSize}px`,
                 textShadow: "1px 1px 5px black",
             }}>
                 {date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
             </label>
             <div className="seperator" />
             <label style={{
-                fontSize: `${height * .15}px`,
+                fontSize: `${fontSize/2}px`,
                 fontStyle: 'italic'
             }}>
                 {

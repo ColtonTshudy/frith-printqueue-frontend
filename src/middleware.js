@@ -32,6 +32,7 @@ app.use('/printer', cors(corsOptions), (req, res) => {
 
 app.post('/canvas-set', (req, res) => {
     groupID = req.body.groupID
+    console.log(`set appointment ID to ${groupID}`)
     res.send(req.body)
 })
 

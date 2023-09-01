@@ -4,8 +4,9 @@ import './css/attendance.css';
 const Capacity = ({ className, students }) => {
     //hooks
     const ref = useRef()
-    const [width, setWidth] = useState()
     const [height, setHeight] = useState()
+    const [width, setWidth] = useState()
+    const fontSize = Math.min(height*0.7, width*0.7)
 
     //get size
     useEffect(() => {
@@ -18,17 +19,23 @@ const Capacity = ({ className, students }) => {
         window.addEventListener("resize", handleResize);
     }, []);
 
-    //constants
-    const fontHeight = Math.min(width * 0.15, height * 0.8);
-
     return (
-        <div className={className} id="attendance-body" ref={ref}>
-            <label style={{
-                fontSize: `${fontHeight}px`,
+        <div className={className} id="attendance-body" ref={ref} style={{
+            fontSize: `${fontSize}px`,
+        }}>
+            {/* <label style={{
+                fontSize: "20%",
+                marginBottom: "1%"
             }}>
-                {students} {students === 1 ? 'Student' : "Students"}
-            </label>
-        </div>
+                Students
+            </label> */}
+            <div id="attendance-readout">
+
+                <label id="attendance-number">
+                    {students}
+                </label>
+            </div >
+        </div >
     )
 };
 

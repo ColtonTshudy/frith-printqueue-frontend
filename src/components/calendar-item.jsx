@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
 import './css/calendar-item.css'
 
-const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday, openSlots, totalSlots }) => {
+const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday, openSlots, totalSlots, isToday = true, openSlots, totalSlots }) => {
+
     const hoursInDay = closeTime - openTime
+    const isSelected = (hour - startHour) >= 0 && (hour - startHour) < duration && isToday
 
     const ref = useRef()
     const [height, setHeight] = useState(0)
@@ -21,53 +23,58 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
     return (
         <div
             ref={ref}
-            className="calendar-item-main"
+            className={`${className} calendar-item-main ${isSelected ? "calendar-item-selected" : ""}`}
             style={{
                 height: `${duration / hoursInDay * 100}%`,
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
-                backgroundColor: (hour - startHour) >= 0 && (hour - startHour) < duration && isToday ? 'lime' : getColor(title),
+                backgroundColor: getColor(testTitle),
                 fontSize: `${height * 0.7}px`
             }}>
             <label className="calendar-item-capacity">
                 {totalSlots - openSlots}/{totalSlots}
             </label>
             <label className="calendar-item-title">
-                {getTitle(title)}
+                &nbsp;{getTitle(testTitle)}
             </label>
+            {
+                isSelected ? 
+                <label className="calendar-item-circle" />
+                :
+                <></>
+            }
             <label className="calendar-item-time">
                 {new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
             </label>
+            <label>{new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</label>
         </div>
     )
 }
 
-//change the div color based on the task's status and remaining time
 const getColor = (title) => {
     let str = title.toLowerCase()
 
     if (str.includes("solder"))
-        return 'beige'
+        return 'rgb(37, 74, 186)'
     if (str.includes("cnc"))
-        return 'khaki'
+        return 'rgb(54, 128, 48)'
     if (str.includes("laser"))
-        return 'lightsalmon'
+        return 'rgb(207, 100, 43)'
     if (str.includes("wood"))
-        return 'tan'
-    return 'pink'
+        return 'rgb(92, 27, 33)'
+    return 'darkviolet'
 }
 
-//change the div color based on the task's status and remaining time
 const getTitle = (title) => {
     const str = title.toLowerCase()
 
     if (str.includes("solder"))
-        return 'Solder Training'
+        return 'Solder'
     if (str.includes("cnc"))
-        return 'CNC Training'
+        return 'CNC'
     if (str.includes("laser"))
-        return 'Laser Cutter Training'
+        return 'Laser'
     if (str.includes("wood"))
-        return 'Woodshop Training'
+        return 'Woodshop'
     return title
 }
 

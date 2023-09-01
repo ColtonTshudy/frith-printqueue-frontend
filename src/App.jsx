@@ -106,7 +106,8 @@ function App() {
           <div className="fullscreen youtube">
             <iframe className="youtube" src="https://www.youtube.com/embed/4LMjbWDYsGs?si=-yHWly8StYjeS8KN&autoplay=1&mute=1&loop=1&playsinline=1&controls=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-          : <></>
+          :
+          <></>
       }
 
       <div className="left-screen">
@@ -121,12 +122,8 @@ function App() {
 
       <div className="right-screen">
         <div className="top-right-box blur">
-          <div className="clock-box">
-            <Clock className="clock" operatingHours={hoursData} />
-          </div>
-          <div className="capacity-box">
-            <Attendance className="capacity" students={capacityData.data} max={55} />
-          </div>
+          <Attendance className="capacity" students={capacityData.data} max={55} />
+          <Clock className="clock" operatingHours={hoursData} />
         </div>
         <Calendar className="calendar" data={trainingsData} date={date} operatingHours={hoursData} />
       </div>

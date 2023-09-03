@@ -8,12 +8,16 @@ const Clock = ({ className, operatingHours }) => {
     const [width, setWidth] = useState()
     const ref = useRef()
 
+    const hourFloat = date.getHours() + date.getMinutes() / 60
+    const fontSize = Math.min(height * 0.5, width * 0.2)
     //get the closing time today and opening time tomorrow
-    //for some reason, checking this boolean fixes errors. Comparing to undefined does not work
-    const closeTime = operatingHours[date.getDay()] ? operatingHours[date.getDay()].close : ''
-    const openTimeTomorrow = operatingHours[date.getDay()] ? operatingHours[(date.getDay()+1)%7].open : ''
-    const hourFloat = date.getHours()+date.getMinutes()/60
-    const fontSize = Math.min(height*0.5, width*0.2)
+    let closeTime = ""
+    let openTimeTomorrow = ""
+    try {
+        closeTime = operatingHours[date.getDay()].close
+        openTimeTomorrow = operatingHours[(date.getDay() + 1) % 7].open
+    }
+    catch (e) { console.log(e) }
 
     //setup
     useEffect(() => {
@@ -42,13 +46,13 @@ const Clock = ({ className, operatingHours }) => {
             </label>
             <div className="seperator" />
             <label style={{
-                fontSize: `${fontSize/2}px`,
+                fontSize: `${fontSize / 2}px`,
                 fontStyle: 'italic'
             }}>
                 {
                     hourFloat < closeTime && hourFloat > openTimeTomorrow ?
-                    `Closing at ${formatTime(closeTime)}` :
-                    `Opening at ${formatTime(openTimeTomorrow)}`
+                        `Closing at ${formatTime(closeTime)}` :
+                        `Opening at ${formatTime(openTimeTomorrow)}`
                 }
             </label>
         </div >

@@ -7,11 +7,11 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
     const textRef = useRef()
     const [height, setHeight] = useState(0)
     const [textBoxWidth, setTextBoxWidth] = useState(0)
-    const [textWidth, setTextWidth] = useState(0)    
+    const [textWidth, setTextWidth] = useState(0)
 
     // ONLY FOR TEST SERVER
-    // const arr = ['solder', 'cnc', 'laser', 'wood', title]
-    // const testTitle = arr[Math.floor(Math.random() * arr.length)]
+    const arr = ['solder', 'cnc', 'laser', 'wood', title]
+    const [testTitle, setTestTitle] = useState("")
     // ONLY FOR TESR SERVER
 
     const hoursInDay = closeTime - openTime
@@ -20,6 +20,9 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
 
     //update the current epoch every second
     useEffect(() => {
+        //generate random title
+        setTestTitle(arr[Math.floor(Math.random() * arr.length)])
+
         //get height of reference
         const handleResize = () => {
             setHeight(ref.current.clientHeight)
@@ -32,7 +35,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
         //supid fix for forcing program to re-measure box widths
         setTimeout(() => handleResize(), 1000)
 
-    }, [duration]);
+    }, [duration, title]);
 
     //return a div with 1 or 2 labels; printID and time remaining
     return (
@@ -42,7 +45,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
             style={{
                 height: `${duration / hoursInDay * 100}%`,
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
-                backgroundColor: getColor(title),
+                backgroundColor: getColor(testTitle),
                 fontSize: `${height * 0.7}px`
             }}>
             <label className="calendar-item-capacity">
@@ -51,9 +54,9 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
 
             <div className="calendar-item-title" ref={textRef}>
                 <div className={doMarquee ? "marquee" : ""} style={{
-                    paddingLeft: `${textBoxWidth}px`,
+                    paddingLeft: doMarquee?`${textBoxWidth}px`:"",
                 }}>
-                    {textWidth} &nbsp;{getTitle(title)}
+                    &nbsp;{getTitle(testTitle)}
                 </div>
             </div>
 

@@ -20,14 +20,6 @@
     text-shadow: 1px 1px 2px black;
 }
 
-.calendar-item-title {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex: 1;
-    overflow: hidden;
-    margin-right: 5%;
-}
-
 .calendar-item-capacity {
     height: 100%;
     right: 20%;
@@ -36,7 +28,6 @@
     border-radius: 10px;
     padding-left: 2%;
     padding-right: 2%;
-    margin-right: 2%;
 
     text-align: center;
     text-shadow: none;
@@ -59,4 +50,58 @@
     border-radius: 50%;
     background-color: white;
     margin-right: 2%;
+}
+
+.calendar-item-title {
+    flex: 1;
+    white-space: nowrap;
+    /* text-overflow: ellipsis; */
+    overflow: hidden;
+
+    margin-left: 2%;
+    margin-right: 2%;
+    
+    position:relative;
+
+    height: 100%;
+
+    /* display: flex;
+    justify-content: center; */
+
+}
+
+.calendar-item-title-2 {
+    position:absolute;
+}
+
+.marquee {
+    position:absolute;
+    
+    box-sizing: border-box;
+    animation: move-flex-center 10s ease infinite;
+    /* animation: move-noflex 10s linear infinite; */
+}
+
+@keyframes move-flex-center {
+    0% {
+        transform: translateX(0%);
+    }
+
+    50% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes move-noflex {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }

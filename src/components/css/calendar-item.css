@@ -64,36 +64,12 @@
     position:relative;
 
     height: 100%;
-
-    /* display: flex;
-    justify-content: center; */
-
-}
-
-.calendar-item-title-2 {
-    position:absolute;
 }
 
 .marquee {
     position:absolute;
-    
-    box-sizing: border-box;
-    animation: move-flex-center 10s ease infinite;
-    /* animation: move-noflex 10s linear infinite; */
-}
-
-@keyframes move-flex-center {
-    0% {
-        transform: translateX(0%);
-    }
-
-    50% {
-        transform: translateX(-100%);
-    }
-
-    100% {
-        transform: translateX(0%);
-    }
+    animation: move-noflex 10s linear infinite;
+    /* transform: translateX(-100%); */
 }
 
 @keyframes move-noflex {

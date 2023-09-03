@@ -7,7 +7,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
     const textRef = useRef()
     const [height, setHeight] = useState(0)
     const [textBoxWidth, setTextBoxWidth] = useState(0)
-    const [textWidth, setTextWidth] = useState(0)
+    const [textWidth, setTextWidth] = useState(0)    
 
     // ONLY FOR TEST SERVER
     // const arr = ['solder', 'cnc', 'laser', 'wood', title]
@@ -28,6 +28,10 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
         }
         handleResize()
         window.addEventListener("resize", handleResize);
+
+        //supid fix for forcing program to re-measure box widths
+        setTimeout(() => handleResize(), 1000)
+
     }, [duration]);
 
     //return a div with 1 or 2 labels; printID and time remaining
@@ -46,17 +50,10 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
             </label>
 
             <div className="calendar-item-title" ref={textRef}>
-                <div style={{
-                    opacity: 0,
-                    position: "absolute"
-                }}>
-                    {textWidth} &nbsp;{getTitle(title)} very longs pijwejj
-                </div>
-                
                 <div className={doMarquee ? "marquee" : ""} style={{
-                    width: `${textWidth-textBoxWidth}px`
+                    paddingLeft: `${textBoxWidth}px`,
                 }}>
-                    {textWidth} &nbsp;{getTitle(title)} very longs pijwejj
+                    {textWidth} &nbsp;{getTitle(title)}
                 </div>
             </div>
 

@@ -98,8 +98,6 @@ function App() {
     testDate.setDate(23)
     testDate.setFullYear(2023)
     testDate.setMonth(7) // August (jan is 0)
-    testDate.setHours(12)
-    testDate.setMinutes(0)
     setDate(testDate)
 
     //reset timer

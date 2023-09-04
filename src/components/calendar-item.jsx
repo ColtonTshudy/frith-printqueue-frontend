@@ -122,7 +122,7 @@ const getColor = (title, startHour, hour, isSelected) => {
         return "rgb(200, 100, 43)"
     if (hour > startHour)
         return "rgb(0,0,0,0.6)"
-    return "rgb(92, 27, 33, 0.5)"
+    return "rgb(92, 27, 33, 0.8)"
 }
 
 const getTextColor = (startHour, hour) => {

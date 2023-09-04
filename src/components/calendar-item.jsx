@@ -16,6 +16,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
 
     const hoursInDay = closeTime - openTime
     const isSelected = (hour - startHour) >= 0 && (hour - startHour) < duration && isToday
+    const isOver = hour > (startHour + duration)
     const doMarquee = textWidth > textBoxWidth
 
     //update the current epoch every second
@@ -47,7 +48,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
                 backgroundColor: getColor(testTitle, startHour, hour, isSelected),
                 fontSize: `${height * 0.7}px`,
-                color: getTextColor(startHour, hour)
+                color: getTextColor(isOver, isToday)
             }}>
             <label className={"calendar-item-capacity"}>
                 {totalSlots - openSlots}/{totalSlots}
@@ -127,8 +128,8 @@ const getColor = (title, startHour, hour, isSelected) => {
     return "rgb(92, 27, 33, 0.8)"
 }
 
-const getTextColor = (startHour, hour) => {
-    if (hour > startHour)
+const getTextColor = (isOver, isToday) => {
+    if (isOver && isToday)
         return "rgb(150,150,150)"
     return "white"
 }

@@ -40,7 +40,7 @@
 
 .calendar-day-needle {
     position: absolute;
-    width:7%;
+    width:10.5%;
     /* background-color: red; */
     /* height: 0.5%; */
     left: 0%;
@@ -54,9 +54,9 @@
 .calendar-day-needle-track {
     position:absolute;
     height:100%;
-    width:4%;
+    width:3.5%;
 
-    background-color: grey;
+    background-color: rgb(0,0,0,0.5);
     left:0%;
     top:0%;
 }

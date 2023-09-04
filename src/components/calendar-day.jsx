@@ -70,18 +70,30 @@ const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime })
                         )
                         :
                         <div className="calendar-day-no-trainings">
-                            no trainings
+                            No Trainings
                         </div>
                 }
+                {/* {
+                    isToday ?
+                        <div className="calendar-day-needle-track">
+
+                        </div>
+                        :
+                        <></>
+                } */}
                 {
                     isToday ?
-                        <svg className="calendar-day-needle" style={{
+                        <svg className="calendar-day-needle" viewBox="0 0 3 3" fill="white" style={{
                             top: `${clamp((nowHour - openTime) / (closeTime - openTime) * 100, 0, 100)}%`,
+                            // top: "20%"
                         }}>
+                            <g> <polygon fill="white" points="0,0 3,1.5 0,3" /> </g>
+
                         </svg>
                         :
                         <></>
                 }
+
             </div>
         </div>
     )

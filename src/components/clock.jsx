@@ -45,9 +45,8 @@ const Clock = ({ className, operatingHours }) => {
                 {date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
             </label>
             <div className="seperator" />
-            <label style={{
+            <label id="clock-closing" style={{
                 fontSize: `${fontSize / 2}px`,
-                fontStyle: 'italic'
             }}>
                 {
                     hourFloat < closeTime && hourFloat > openTimeTomorrow ?

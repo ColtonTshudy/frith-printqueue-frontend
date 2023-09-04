@@ -18,18 +18,8 @@
     position: relative;
 
     padding: 10px;
-}
 
-.calendar-day-needle {
-    position: absolute;
-    width:6%;
-    /* background-color: red; */
-    /* height: 0.5%; */
-    left: 0%;
-
-    /* border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 30px solid white; */
+    overflow: hidden;
 }
 
 .calendar-day-no-trainings {
@@ -39,10 +29,33 @@
 }   
 
 .calendar-day-item-today {
-    width: 92%;
+    width: 100%;
     right: 0%;
+    padding-left: 8%;
 }
 
 .calendar-day-item-future {
     width: 100%;
+}
+
+.calendar-day-needle {
+    position: absolute;
+    width:7%;
+    /* background-color: red; */
+    /* height: 0.5%; */
+    left: 0%;
+    margin-top: -3.5%;
+
+    /* border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 30px solid white; */
+}
+
+.calendar-day-needle-track {
+    position:absolute;
+    height:100%;
+    width:8%;
+
+    background-color: black;
+    left:0%;
 }

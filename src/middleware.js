@@ -26,7 +26,7 @@ app.use('/canvas-all', cors(corsOptions), (req, res) => {
 });
 
 app.use('/printer', cors(corsOptions), (req, res) => {
-    const request_url = `   `
+    const request_url = 'https://script.googleusercontent.com/macros/echo?user_content_key=RZOUxeoS90dlhWev3jVJZD0M98fYn67SM3VrCixCLB4uUoGWVih0zAgTZb_7Linq6hlCPCiujeH1QV5ea5Zli26gVE2BHwk_m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLdAkI7g5aE5l__QuqoY5dKjpxa4TqY9U6LiVKyfzOd9N-jsd70CjqHp8hMtcqa33lBZs9UrBGMIZcESPA3sI2Qdne8WSg0yIw&lib=Md_aIkyzuLDBrvWy2AFXFRS8iU2Jo7_id'
     req.pipe(request(request_url)).pipe(res)
 });
 

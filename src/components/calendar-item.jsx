@@ -32,40 +32,66 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
         handleResize()
         window.addEventListener("resize", handleResize);
 
-        //supid fix for forcing program to re-measure box widths
+        //supid fix for forcing program to re-measure box widths *after* mounting
         setTimeout(() => handleResize(), 1000)
 
-    }, [duration, title]);
+    }, [duration, title, openTime]);
 
     //return a div with 1 or 2 labels; printID and time remaining
     return (
         <div
             ref={ref}
-            className={`${className} calendar-item-main ${isSelected ? "calendar-item-selected" : ""}`}
+            className={`${className} calendar-item-main`}
             style={{
                 height: `${duration / hoursInDay * 100}%`,
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
-                backgroundColor: getColor(testTitle),
-                fontSize: `${height * 0.7}px`
+                backgroundColor: getColor(testTitle, startHour, hour, isSelected),
+                fontSize: `${height * 0.7}px`,
+                color: getTextColor(startHour, hour)
             }}>
-            <label className="calendar-item-capacity">
+            <label className={"calendar-item-capacity"}>
                 {totalSlots - openSlots}/{totalSlots}
             </label>
 
-            <div className="calendar-item-title" ref={textRef}>
-                <div className={doMarquee ? "marquee" : ""} style={{
-                    paddingLeft: doMarquee?`${textBoxWidth}px`:"",
+            <div className="calendar-item-title2" ref={textRef}>
+
+                <div className={doMarquee ? "marquee2" : ""}>
+                    &nbsp;{getTitle(testTitle)}
+                </div>
+                <div className={doMarquee ? "marquee3" : "invis"}>
+                    &nbsp;{getTitle(testTitle)}
+                </div>
+
+                {/* <div style={{
+                    position: "absolute",
+                    opacity: 0
                 }}>
                     &nbsp;{getTitle(testTitle)}
                 </div>
+                {
+                    doMarquee ?
+                        <marquee behavior="alternate" scrolldelay={300}>
+                            &nbsp;{getTitle(testTitle)}
+                        </marquee>
+                        :
+                        <div>
+                            &nbsp;{getTitle(testTitle)}
+                        </div>
+                } */}
+
+                {/* <div className={doMarquee ? "marquee" : ""} style={{
+                    paddingLeft: doMarquee ? `${textBoxWidth}px` : "",
+                }}>
+                    &nbsp;{getTitle(testTitle)}
+                </div> */}
             </div>
 
-            {
+            {/* {
                 isSelected ?
                     <label className="calendar-item-circle" />
                     :
                     <></>
-            }
+            } */}
             <label className="calendar-item-time">
                 {new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
             </label>
@@ -73,18 +99,32 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
     )
 }
 
-const getColor = (title) => {
-    let str = title.toLowerCase()
+// const getColor = (title) => {
+//     let str = title.toLowerCase()
 
-    if (str.includes("solder"))
-        return 'rgb(37, 74, 186)'
-    if (str.includes("cnc"))
-        return 'rgb(54, 128, 48)'
-    if (str.includes("laser"))
-        return 'rgb(207, 100, 43)'
-    if (str.includes("wood"))
-        return 'rgb(92, 27, 33)'
-    return 'darkviolet'
+//     if (str.includes("solder"))
+//         return 'rgb(37, 74, 186)'
+//     if (str.includes("cnc"))
+//         return 'rgb(54, 128, 48)'
+//     if (str.includes("laser"))
+//         return 'rgb(207, 100, 43)'
+//     if (str.includes("wood"))
+//         return 'rgb(92, 27, 33)'
+//     return 'darkviolet'
+// }
+
+const getColor = (title, startHour, hour, isSelected) => {
+    if (isSelected)
+        return "rgb(207, 100, 43)"
+    if (hour > startHour)
+        return "black"
+    return "rgb(92, 27, 33)"
+}
+
+const getTextColor = (startHour, hour) => {
+    if (hour > startHour)
+        return "rgb(150,150,150)"
+    return "white"
 }
 
 const getTitle = (title) => {

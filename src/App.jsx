@@ -68,19 +68,18 @@ function App() {
     })
 
     //fetch opening/closing hours data
-    setHoursData(HoursData) //dummy data
-    console.log(HoursData)
-    // fetch("http://localhost:3100/open-hours").then(res => {
-    //   if (res.status >= 400) {
-    //     throw new Error("Server responds with error!");
-    //   }
-    //   return res.json()
-    // }).then(data => {
-    //   setHoursData(data)
-    //   console.log(data)
-    // }).catch(err => {
-    //   console.log(err)
-    // })
+    // setHoursData(HoursData) //dummy data
+    fetch("http://localhost:3100/open-hours").then(res => {
+      if (res.status >= 400) {
+        throw new Error("Server responds with error!");
+      }
+      return res.json()
+    }).then(data => {
+      setHoursData(data)
+      console.log(data)
+    }).catch(err => {
+      console.log(err)
+    })
 
     //fetch tool training appointments data
     // setTrainingsData(TrainingsData) //dummy data
@@ -99,6 +98,8 @@ function App() {
     testDate.setDate(23)
     testDate.setFullYear(2023)
     testDate.setMonth(7) // August (jan is 0)
+    testDate.setHours(12)
+    testDate.setMinutes(0)
     setDate(testDate)
 
     //reset timer

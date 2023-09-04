@@ -14,10 +14,10 @@ const Clock = ({ className, operatingHours }) => {
     let closeTime = ""
     let openTimeTomorrow = ""
     try {
-        closeTime = operatingHours[date.getDay()].close
-        openTimeTomorrow = operatingHours[(date.getDay() + 1) % 7].open
+        closeTime = parseInt(operatingHours[date.getDay()].close)
+        openTimeTomorrow = parseInt(operatingHours[(date.getDay() + 1) % 7].open)
     }
-    catch (e) { console.log(e) }
+    catch (e) {  }
 
     //setup
     useEffect(() => {

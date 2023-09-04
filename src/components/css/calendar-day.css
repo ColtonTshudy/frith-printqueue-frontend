@@ -54,8 +54,9 @@
 .calendar-day-needle-track {
     position:absolute;
     height:100%;
-    width:8%;
+    width:4%;
 
-    background-color: black;
+    background-color: grey;
     left:0%;
+    top:0%;
 }

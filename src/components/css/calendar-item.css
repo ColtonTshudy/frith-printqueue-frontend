@@ -97,7 +97,8 @@
 
     height: 100%;
 
-    display:inline;
+    display:flex;
+    align-items: center;
 }
 
 
@@ -109,7 +110,7 @@
 
 .marquee3 {
     position:absolute;
-    animation: 20s move-3 10s linear infinite;
+    animation: 20s move-3 -10s linear infinite;
     padding-left: 25%;
 }
 

@@ -58,9 +58,13 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                 <div className={doMarquee ? "marquee2" : ""}>
                     &nbsp;{getTitle(testTitle)}
                 </div>
-                <div className={doMarquee ? "marquee3" : "invis"}>
-                    &nbsp;{getTitle(testTitle)}
-                </div>
+                {doMarquee ?
+                    <div className={doMarquee ? "marquee3" : "invis"}>
+                        &nbsp;{getTitle(testTitle)}
+                    </div>
+                    :
+                    <></>}
+
 
                 {/* <div style={{
                     position: "absolute",
@@ -115,10 +119,10 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
 
 const getColor = (title, startHour, hour, isSelected) => {
     if (isSelected)
-        return "rgb(207, 100, 43)"
+        return "rgb(200, 100, 43)"
     if (hour > startHour)
-        return "black"
-    return "rgb(92, 27, 33)"
+        return "rgb(0,0,0,0.6)"
+    return "rgb(92, 27, 33, 0.5)"
 }
 
 const getTextColor = (startHour, hour) => {

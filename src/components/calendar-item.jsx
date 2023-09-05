@@ -69,7 +69,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                     <></>
             } */}
             <label className="calendar-item-time">
-                {isToday ?
+                {/* {isToday ? */ true?
                     new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
                     : ""}
             </label>

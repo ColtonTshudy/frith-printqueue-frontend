@@ -22,8 +22,8 @@ const refresh_time = 1 //minutes to refresh
 
 //for testing
 // import PrinterData from './rsc/dummyprinterdata.json'
-import HoursData from './rsc/openhours.json'
-import CapacityData from './rsc/capacity.json'
+// import HoursData from './rsc/openhours.json'
+// import CapacityData from './rsc/capacity.json'
 // import TrainingsData from './rsc/trainings.json'
 
 function App() {

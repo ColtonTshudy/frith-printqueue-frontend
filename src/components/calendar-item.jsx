@@ -47,7 +47,10 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                 {totalSlots - openSlots}/{totalSlots}
             </label>
 
-            <div className="calendar-item-title2" ref={textRef}>
+            <div className="calendar-item-title2" ref={textRef} style={{
+                // fontSize: `${height * 0.7}px`,
+                height: doMarquee ? "100%" : "",
+            }}>
 
                 <div className={doMarquee ? "marquee2" : ""}>
                     &nbsp;{getTitle(title)}

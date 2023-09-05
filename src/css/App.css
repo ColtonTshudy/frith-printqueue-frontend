@@ -151,7 +151,8 @@ body {
 }
 
 .capacity {
-  flex: 0 0 25%;
+  flex: 0 0 20%;
+  box-sizing: border-box;
 }
 
 .clock {

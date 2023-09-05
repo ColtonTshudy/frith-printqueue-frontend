@@ -26,6 +26,14 @@ const Calendar = ({ className, data, date, operatingHours }) => {
     const [appointments, setAppointments] = useState([])
     const ref = useRef();
 
+    let closeTimes=[]
+    let openTimes=[]
+    try {
+        closeTimes = operatingHours.map((d) => parseInt(d.close) );
+        openTimes = operatingHours.map((d) => parseInt(d.open) );
+    }
+    catch (e) {}
+
     useEffect(() => {
         getAppointments(data, date, 3, setAppointments);
     }, [data])
@@ -43,8 +51,8 @@ const Calendar = ({ className, data, date, operatingHours }) => {
                             dayIndex={(date.getDay() + index) % 7}
                             trainings={trainings}
                             date={date}
-                            openTime={operatingHours[date.getDay()] ? operatingHours[(date.getDay() + index) % 7].open : 0}
-                            closeTime={operatingHours[date.getDay()] ? operatingHours[(date.getDay() + index) % 7].close : 0}
+                            openTime={openTimes[(date.getDay() + index) % 7]}
+                            closeTime={closeTimes[(date.getDay() + index) % 7]}
                         />
                     )
             }

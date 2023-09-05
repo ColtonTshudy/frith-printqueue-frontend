@@ -69,7 +69,18 @@ function App() {
     })
 
     //fetch opening/closing hours data
-    setHoursData(HoursData) //dummy data
+    // setHoursData(HoursData) //dummy data
+    fetch("http://localhost:3100/open-hours").then(res => {
+      if (res.status >= 400) {
+        throw new Error("Server responds with error!");
+      }
+      return res.json()
+    }).then(data => {
+      setHoursData(data)
+      console.log(data)
+    }).catch(err => {
+      console.log(err)
+    })
 
     //fetch tool training appointments data
     // setTrainingsData(TrainingsData) //dummy data

@@ -20,14 +20,6 @@
     text-shadow: 1px 1px 2px black;
 }
 
-.calendar-item-title {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex: 1;
-    overflow: hidden;
-    margin-right: 5%;
-}
-
 .calendar-item-capacity {
     height: 100%;
     right: 20%;
@@ -36,7 +28,6 @@
     border-radius: 10px;
     padding-left: 2%;
     padding-right: 2%;
-    margin-right: 2%;
 
     text-align: center;
     text-shadow: none;
@@ -49,9 +40,11 @@
     text-align: right;
 }
 
-/* .calendar-item-selected {
-    border: solid 2px white;
-} */
+.calendar-item-selected {
+    /* border: solid 2px white; */
+    background-color: yellow;
+    color:black;
+}
 
 .calendar-item-circle {
     height: 80%;
@@ -59,4 +52,88 @@
     border-radius: 50%;
     background-color: white;
     margin-right: 2%;
+}
+
+.calendar-item-title {
+    flex: 1;
+    white-space: nowrap;
+    /* text-overflow: ellipsis; */
+    overflow: hidden;
+
+    margin-left: 2%;
+    margin-right: 2%;
+    
+    position:relative;
+
+    height: 100%;
+}
+
+.marquee {
+    position:absolute;
+    animation: move-noflex 10s linear infinite;
+    /* transform: translateX(-100%); */
+}
+
+@keyframes move-noflex {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.calendar-item-title2 {
+    flex: 1;
+    white-space: nowrap;
+    /* text-overflow: ellipsis; */
+    overflow: hidden;
+
+    margin-left: 2%;
+    margin-right: 2%;
+    
+    position:relative;
+
+    height: 100%;
+
+    display:flex;
+    align-items: center;
+}
+
+
+.marquee2 {
+    position:absolute;
+    animation: 20s move-2 0s linear infinite;
+    padding-left: 25%;
+}
+
+.marquee3 {
+    position:absolute;
+    animation: 20s move-3 -10s linear infinite;
+    padding-left: 25%;
+}
+
+.invis {
+    opacity: 0;
+}
+
+@keyframes move-2 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes move-3 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }

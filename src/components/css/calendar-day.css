@@ -18,18 +18,8 @@
     position: relative;
 
     padding: 10px;
-}
 
-.calendar-day-needle {
-    position: absolute;
-    width:6%;
-    /* background-color: red; */
-    /* height: 0.5%; */
-    left: 0%;
-
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 30px solid white;
+    overflow: hidden;
 }
 
 .calendar-day-no-trainings {
@@ -39,10 +29,46 @@
 }   
 
 .calendar-day-item-today {
-    width: 92%;
+    width: 100%;
     right: 0%;
+    padding-left: 8%;
 }
 
 .calendar-day-item-future {
     width: 100%;
+}
+
+.calendar-day-needle {
+    position: absolute;
+    width:7%;
+    /* background-color: red; */
+    /* height: 0.5%; */
+    left: 0%;
+    margin-top: -3.5%;
+
+    /* border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 30px solid white; */
+}
+
+.calendar-day-needle-track {
+    position:absolute;
+    height:200%;
+    width:3.5%;
+
+    background-color: rgb(255,255,255,0.3);
+    left:0%;
+    top:0%;
+
+    /* background: linear-gradient(rgb(255,255,255,0.2) 45%, rgba(255, 255, 255, 0.8), rgb(255,255,255,0.2) 55%); */
+
+    transform: translateY(-50%);
+}
+
+.calendar-day-needle-lightsaber{
+    position:absolute;
+    background-color: rgb(255,255,255,0.5);
+    width: 100%;
+    height: 0.5%;
+    transform: translateY(-50%);
 }

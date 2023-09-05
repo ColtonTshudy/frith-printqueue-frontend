@@ -39,7 +39,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
             style={{
                 height: `${duration / hoursInDay * 100}%`,
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
-                backgroundColor: getColor(title, startHour, hour, isSelected),
+                backgroundColor: getColor(title, startHour, hour, isSelected, isToday),
                 fontSize: `${height * 0.7}px`,
                 color: getTextColor(isOver, isToday)
             }}>
@@ -74,21 +74,9 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
     )
 }
 
-// const getColor = (title) => {
-//     let str = title.toLowerCase()
-
-//     if (str.includes("solder"))
-//         return 'rgb(37, 74, 186)'
-//     if (str.includes("cnc"))
-//         return 'rgb(54, 128, 48)'
-//     if (str.includes("laser"))
-//         return 'rgb(207, 100, 43)'
-//     if (str.includes("wood"))
-//         return 'rgb(92, 27, 33)'
-//     return 'darkviolet'
-// }
-
-const getColor = (title, startHour, hour, isSelected) => {
+const getColor = (title, startHour, hour, isSelected, isToday) => {
+    if (!isToday)
+        return "rgb(92, 27, 33, 0.8)"
     if (isSelected)
         return "rgb(200, 100, 43)"
     if (hour > startHour)

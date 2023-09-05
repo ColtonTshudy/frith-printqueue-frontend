@@ -77,7 +77,6 @@ function App() {
       return res.json()
     }).then(data => {
       setHoursData(data)
-      console.log(data)
     }).catch(err => {
       console.log(err)
     })

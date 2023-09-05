@@ -26,13 +26,13 @@ const Calendar = ({ className, data, date, operatingHours }) => {
     const [appointments, setAppointments] = useState([])
     const ref = useRef();
 
-    let closeTimes=[]
-    let openTimes=[]
+    let closeTimes = []
+    let openTimes = []
     try {
-        closeTimes = operatingHours.map((d) => parseInt(d.close) );
-        openTimes = operatingHours.map((d) => parseInt(d.open) );
+        closeTimes = operatingHours.map((d) => parseInt(d.close));
+        openTimes = operatingHours.map((d) => parseInt(d.open));
     }
-    catch (e) {}
+    catch (e) { }
 
     useEffect(() => {
         getAppointments(data, date, 3, setAppointments);
@@ -45,6 +45,7 @@ const Calendar = ({ className, data, date, operatingHours }) => {
                     <></>
                     :
                     appointments.map((trainings, index) =>
+                        // console.log(trainings)
                         <CalendarDay
                             key={index}
                             className={`calendar-day blur ${index === 0 ? "" : "calendar-sub"}`}
@@ -76,23 +77,24 @@ const getAppointments = (data, date, numDays, TEST) => {
     const groupIDs = Object.keys(apptsByGroup)
     const idCount = groupIDs.length
 
-    groupIDs.forEach((id, index) => {
-        fetch(url1, {
+    groupIDs.forEach(async (id, index) => {
+        const res = await fetch(url1, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ "groupID": id })
-        }).then(() => {
-            fetch(url2).then(res => {
-                return res.json()
-            }).then(data => {
-                apptsByGroup[id] = data.appointments
+        })
 
-                //do this once all appointments have been added
-                if (index === idCount - 1) {
-                    // console.log(apptsByGroup)
-                    return sortByDays(apptsByGroup, date, 3, TEST)
-                }
-            })
+        fetch(url2).then(res => {
+            return res.json()
+        }).then(data => {
+            apptsByGroup[id] = data.appointments
+
+            //do this once all appointments have been added
+            if (index === idCount - 1) {
+                // console.log(apptsByGroup)
+                // console.log(sortByDays(apptsByGroup, date, 3, TEST))
+                return sortByDays(apptsByGroup, date, 3, TEST)
+            }
         })
     })
 

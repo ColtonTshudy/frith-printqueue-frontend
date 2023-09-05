@@ -22,7 +22,7 @@ app.use(cors())
 
 app.use('/canvas-all', cors(corsOptions), (req, res) => {
     groupIDs = []
-    console.log("reset id list")
+    // console.log("reset id list")
     const request_url = `https://vt.instructure.com/api/v1/appointment_groups/?access_token=4511~ANBuOoWGbFZFzUNNmXtqOod8pxkDVpyHahwBGPZAhJ72LtYmgyAZrnl2IhSZ48vY&include_past_appointments=true&scope=manageable&per_page=1000&page=1`
     req.pipe(request(request_url)).pipe(res)
 });
@@ -34,13 +34,13 @@ app.use('/printer', cors(corsOptions), (req, res) => {
 
 app.post('/canvas-set', (req, res) => {
     groupIDs.push(req.body.groupID)
-    console.log(`canvas appointment id set: ${groupIDs}`)
+    // console.log(`canvas appointment id set: ${groupIDs}`)
     res.send(req.body)
 })
 
 app.use('/canvas-get', (req, res) => {
     const groupID = groupIDs.pop()
-    console.log(`canvas appointment id requested, popped ${groupID}. id list: [${groupIDs}]`)
+    // console.log(`canvas appointment id requested, popped ${groupID}. id list: [${groupIDs}]`)
     const request_url = `https://vt.instructure.com/api/v1/appointment_groups/${groupID}?access_token=4511~ANBuOoWGbFZFzUNNmXtqOod8pxkDVpyHahwBGPZAhJ72LtYmgyAZrnl2IhSZ48vY&include_past_appointments=true&scope=manageable&per_page=1000&page=1`
     req.pipe(request(request_url)).pipe(res)
 })

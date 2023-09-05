@@ -40,7 +40,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                 height: `${duration / hoursInDay * 100}%`,
                 top: `${(startHour - openTime) / hoursInDay * 100}%`,
                 backgroundColor: getColor(title, startHour, hour, isSelected, isToday),
-                fontSize: `${height * 0.7}px`,
+                // fontSize: `${height * 0.7}px`,
                 color: getTextColor(isOver, isToday)
             }}>
             <label className={"calendar-item-capacity"}>

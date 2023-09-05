@@ -1,6 +1,6 @@
 .calendar-item-main {
     background-color: white;
-    font-size: 35%;
+    font-size: 50%;
 
     position: absolute;
 
@@ -21,7 +21,7 @@
 }
 
 .calendar-item-capacity {
-    height: 100%;
+    /* height: 100%; */
     right: 20%;
 
     background-color: black;

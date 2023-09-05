@@ -2,7 +2,14 @@ import { useEffect, useState, useRef } from 'react'
 import './css/calendar-item.css'
 
 const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday = true, openSlots, totalSlots }) => {
+    //hooks
+    const ref = useRef()
+    const textRef = useRef()
+    const [height, setHeight] = useState(0)
+    const [textBoxWidth, setTextBoxWidth] = useState(0)
+    const [textWidth, setTextWidth] = useState(0)
 
+    //variables
     const hoursInDay = closeTime - openTime
     const isSelected = (hour - startHour) >= 0 && (hour - startHour) < duration && isToday
     const isOver = hour > (startHour + duration)
@@ -51,32 +58,7 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                     </div>
                     :
                     <></>}
-
-
-                {/* <div style={{
-                    position: "absolute",
-                    opacity: 0
-                }}>
-                    &nbsp;{getTitle(title)}
-                </div>
-                {
-                    doMarquee ?
-                        <marquee behavior="alternate" scrolldelay={300}>
-                            &nbsp;{getTitle(title)}
-                        </marquee>
-                        :
-                        <div>
-                            &nbsp;{getTitle(title)}
-                        </div>
-                } */}
-
-                {/* <div className={doMarquee ? "marquee" : ""} style={{
-                    paddingLeft: doMarquee ? `${textBoxWidth}px` : "",
-                }}>
-                    &nbsp;{getTitle(title)}
-                </div> */}
             </div>
-
             {/* {
                 isSelected ?
                     <label className="calendar-item-circle" />
@@ -88,7 +70,6 @@ const PrintItem = ({ className, openTime, closeTime, duration, startTime, startH
                     new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
                     : ""}
             </label>
-            <label>{new Date(startTime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</label>
         </div>
     )
 }

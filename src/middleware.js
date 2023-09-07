@@ -51,7 +51,7 @@ app.use('/attendance', cors(corsOptions), (req, res) => {
 })
 
 app.use('/open-hours', cors(corsOptions), (req, res) => {
-    const request_url = 'https://script.googleusercontent.com/macros/echo?user_content_key=2WM2anYNDZhT3eLN_vNnT5mGHnAmNgSYzr8yumPhhPeGi7ZQ3VC17NnZy9dyJH8is19VYvFR-86BghOQHtkxUIfwz641r1dcm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnOBQ0X33uoEOYqYYcR_sNbBoUVDAG_XjRsNJ-YWXcSz4OCI4_GeTkHuGXM5IDH2lmDkNwJieIBo1n1WSMuf4EndO2m2CmySmbA&lib=MBMmZsxNgODjHPdmBv-QF1i8iU2Jo7_id'
+    const request_url = 'https://script.googleusercontent.com/macros/echo?user_content_key=QwVJIye0oHhIMO3FjoMwXrqrqqvjdVld1bR2dsO-UA--A3-X1r_YaefKW62Y391BdJmDtABJlLq-Gzn7FGPWZGWnNIi2drsfm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPVf_-Al0YE8OXrzXVzotOgPyAlzyPAVeloKbD4TKIjhVX4EKBqa6YbMpmjvbLUG8vs2KmjEu9Wz8IKsW5Dcpq4LmsjpyXY9rw&lib=MBMmZsxNgODjHPdmBv-QF1i8iU2Jo7_id'
     req.pipe(request(request_url)).pipe(res)
 })
 

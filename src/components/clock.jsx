@@ -12,9 +12,11 @@ const Clock = ({ className, operatingHours }) => {
     const fontSize = Math.min(height * 0.5, width * 0.2)
     //get the closing time today and opening time tomorrow
     let closeTime = ""
+    let openTime = ""
     let openTimeTomorrow = ""
     try {
         closeTime = parseInt(operatingHours[date.getDay()].close)
+        openTime = parseInt(operatingHours[date.getDay()].open)
         openTimeTomorrow = parseInt(operatingHours[(date.getDay() + 1) % 7].open)
     }
     catch (e) {  }
@@ -49,14 +51,21 @@ const Clock = ({ className, operatingHours }) => {
                 fontSize: `${fontSize / 2}px`,
             }}>
                 {
-                    hourFloat < closeTime && hourFloat > openTimeTomorrow ?
-                        `Closing at ${formatTime(closeTime)}` :
-                        `Opening at ${formatTime(openTimeTomorrow)}`
+                    getOpenCloseMessage(hourFloat, closeTime, openTime, openTimeTomorrow)
                 }
             </label>
         </div >
     )
 };
+
+//get message for open/closing
+const getOpenCloseMessage = (hourFloat, closeTime, openTime, openTimeTomorrow) => {
+    if (hourFloat < openTime)
+        return `Opening at ${formatTime(openTime)}`
+    if (hourFloat > closeTime)
+        return `Opening at ${formatTime(openTimeTomorrow)}`
+    return `Closing at ${formatTime(closeTime)}`
+}
 
 //convert 24 hour integer to HH:MM 12 hour format
 const formatTime = (value) => {
@@ -67,7 +76,7 @@ const formatTime = (value) => {
 
     if (minutes.length < 2)
         minutes = `0${minutes}`
-
+    
     return `${hours}:${minutes} ${ampm}`
 }
 

@@ -51,7 +51,7 @@ const Clock = ({ className, operatingHours }) => {
                 {
                     hourFloat < closeTime && hourFloat > openTimeTomorrow ?
                         `Closing at ${formatTime(closeTime)}` :
-                        `Opening at ${formatTime(0)}`
+                        `Opening at ${formatTime(openTimeTomorrow)}`
                 }
             </label>
         </div >

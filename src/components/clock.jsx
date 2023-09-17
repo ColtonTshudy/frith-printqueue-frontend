@@ -51,7 +51,7 @@ const Clock = ({ className, operatingHours }) => {
                 {
                     hourFloat < closeTime && hourFloat > openTimeTomorrow ?
                         `Closing at ${formatTime(closeTime)}` :
-                        `Opening at ${formatTime(openTimeTomorrow)}`
+                        `Opening at ${formatTime(0)}`
                 }
             </label>
         </div >
@@ -60,9 +60,10 @@ const Clock = ({ className, operatingHours }) => {
 
 //convert 24 hour integer to HH:MM 12 hour format
 const formatTime = (value) => {
-    const ampm = value - 12 > 0 ? "PM" : "AM"
-    const hours = `${value % 12}`
-    let minutes = `${(value * 60) % 60}`
+    const ampm = value - 12 >= 0 ? "PM" : "AM"
+    let hours = `${Math.floor(value % 12)}`
+    if (hours === '0') hours = '12'
+    let minutes = `${Math.floor((value * 60) % 60)}`
 
     if (minutes.length < 2)
         minutes = `0${minutes}`

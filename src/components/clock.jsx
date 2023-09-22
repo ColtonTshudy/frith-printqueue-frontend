@@ -14,18 +14,13 @@ const Clock = ({ className, operatingHours }) => {
     let closeTime = ""
     let openTime = ""
     let openTimeTomorrow = ""
+    let error = false
     try {
         closeTime = parseInt(operatingHours[date.getDay()].close)
         openTime = parseInt(operatingHours[date.getDay()].open)
         openTimeTomorrow = parseInt(operatingHours[(date.getDay() + 1) % 7].open)
-
-        console.log(`now: ${date}`)
-        console.log(`closetime: ${closeTime}`)
-        console.log(`opentime: ${openTime}`)
-        console.log(`opentimetomorrow: ${openTimeTomorrow}`)
-        console.log(getOpenCloseMessage(hourFloat, closeTime, openTime, openTimeTomorrow))
     }
-    catch (e) {  }
+    catch (e) { error = true }
 
     //setup
     useEffect(() => {
@@ -57,7 +52,7 @@ const Clock = ({ className, operatingHours }) => {
                 fontSize: `${fontSize / 2}px`,
             }}>
                 {
-                    getOpenCloseMessage(hourFloat, closeTime, openTime, openTimeTomorrow)
+                    getOpenCloseMessage(hourFloat, closeTime, openTime, openTimeTomorrow, error)
                 }
             </label>
         </div >
@@ -65,7 +60,10 @@ const Clock = ({ className, operatingHours }) => {
 };
 
 //get message for open/closing
-const getOpenCloseMessage = (hourFloat, closeTime, openTime, openTimeTomorrow) => {
+const getOpenCloseMessage = (hourFloat, closeTime, openTime, openTimeTomorrow, error) => {
+    if (error) {
+        return 'e: hours not found'
+    }
     if (hourFloat < openTime)
         return `Opening at ${formatTime(openTime)}`
     if (hourFloat > closeTime)

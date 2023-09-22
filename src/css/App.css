@@ -80,6 +80,8 @@ body {
   flex-direction: column;
 
   font-size: 40px;
+
+  position: relative;
 }
 
 .printer-printing {
@@ -163,4 +165,13 @@ body {
   flex: 1; /* Fill remaining height */
   width: 100%;
   font-weight: bold;
+}
+
+.wifi-error {
+  font-size: 200px;
+  height: 50%;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  filter: invert();
 }

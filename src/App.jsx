@@ -17,6 +17,7 @@ import Attendance from './components/attendance'
 import Clock from './components/clock'
 
 import Torgersen2 from './assets/p1840383511.jpg'
+import WifiError from './assets/wifierror.png'
 
 const refresh_time = 1 //minutes to refresh
 
@@ -28,10 +29,16 @@ const refresh_time = 1 //minutes to refresh
 
 function App() {
   const [printData, setPrintData] = useState([])
-  const [capacityData, setAttendanceData] = useState([])
+  const [attendanceData, setAttendanceData] = useState([])
   const [trainingsData, setTrainingsData] = useState([])
   const [hoursData, setHoursData] = useState([])
   const [date, setDate] = useState(new Date())
+  const [errors, setErrors] = useState({
+    print: false,
+    attendance: false,
+    trainings: false,
+    hours: false,
+  })
 
   const [refresh, setRefresh] = useState(false)
 
@@ -51,8 +58,9 @@ function App() {
       return res.json()
     }).then(data => {
       setPrintData(removeEmpties(data))
+      setErrors({ ...errors, print: false })
     }).catch(err => {
-      console.log(err)
+      setErrors({ ...errors, print: true })
     })
 
     //fetch capacity data
@@ -64,8 +72,9 @@ function App() {
       return res.json()
     }).then(data => {
       setAttendanceData(data)
+      setErrors({ ...errors, attendance: false })
     }).catch(err => {
-      console.log(err)
+      setErrors({ ...errors, attendance: true })
     })
 
     //fetch opening/closing hours data
@@ -77,8 +86,9 @@ function App() {
       return res.json()
     }).then(data => {
       setHoursData(data)
+      setErrors({ ...errors, hours: false })
     }).catch(err => {
-      console.log(err)
+      setErrors({ ...errors, hours: true })
     })
 
     //fetch tool training appointments data
@@ -90,8 +100,9 @@ function App() {
       return res.json()
     }).then(data => {
       setTrainingsData(data)
+      setErrors({ ...errors, trainings: false })
     }).catch(err => {
-      console.log(err)
+      setErrors({ ...errors, trainings: true })
     })
 
     setDate(new Date())
@@ -129,11 +140,18 @@ function App() {
 
       <div className="right-screen">
         <div className="top-right-box blur">
-          <Attendance className="capacity" students={capacityData.data} max={55} />
+          <Attendance className="capacity" students={attendanceData.data} max={55} />
           <Clock className="clock" operatingHours={hoursData} />
         </div>
         <Calendar className="calendar" data={trainingsData} date={date} operatingHours={hoursData} />
       </div>
+
+      {
+        allFalse(errors) ?
+          <img className="wifi-error" src={WifiError} />
+          :
+          <></>
+      }
 
     </div >
   )
@@ -142,6 +160,13 @@ function App() {
 const removeEmpties = (arr) => {
   const newArr = arr.filter(dict => Object.keys(dict).length !== 0)
   return newArr
+}
+
+const allFalse = (dict) => {
+  for (const [key, value] of Object.entries(dict)) {
+    if (value === true) return true
+  }
+  return false
 }
 
 export default App

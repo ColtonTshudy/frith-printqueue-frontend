@@ -18,6 +18,12 @@ const Clock = ({ className, operatingHours }) => {
         closeTime = parseInt(operatingHours[date.getDay()].close)
         openTime = parseInt(operatingHours[date.getDay()].open)
         openTimeTomorrow = parseInt(operatingHours[(date.getDay() + 1) % 7].open)
+
+        console.log(`now: ${date}`)
+        console.log(`closetime: ${closeTime}`)
+        console.log(`opentime: ${openTime}`)
+        console.log(`opentimetomorrow: ${openTimeTomorrow}`)
+        console.log(getOpenCloseMessage(hourFloat, closeTime, openTime, openTimeTomorrow))
     }
     catch (e) {  }
 

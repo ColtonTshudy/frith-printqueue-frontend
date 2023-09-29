@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Edit /etc/crontab using sudo and add the following line (replace yourname with your actual username):
-#*/30 * * * * sh /home/orangepi/frith-printqueue-frontend/reboot-no-wifi.sh
+#99 15 * * * * sh /home/orangepi/frith-printqueue-frontend/reboot-no-wifi.sh
 
 TMP_FILE=/tmp/inet_up
 

@@ -19,7 +19,8 @@ import Clock from './components/clock'
 import Torgersen2 from './assets/p1840383511.jpg'
 import WifiError from './assets/wifierror.png'
 
-const refresh_time = 1 //minutes to refresh
+const refresh_time = 1 //minutes between refreshes
+const abort_time = 3 //minutes before aborting a fetch request
 
 //for testing
 // import PrinterData from './rsc/dummyprinterdata.json'
@@ -44,6 +45,7 @@ function App() {
 
   //fetches from each api every X minutes
   useEffect(() => {
+
     //X minute refresh timer
     const timer = setTimeout(() => {
       setRefresh((oldState) => !oldState)
@@ -51,7 +53,7 @@ function App() {
 
     //fetch 3d printer queue data
     // setPrints(removeEmpties(PrinterData)) //dummy data
-    fetch("http://localhost:3100/printer").then(res => {
+    fetch("http://localhost:3100/printer",  { signal: AbortSignal.timeout(1000*60*abort_time) }).then(res => {
       if (res.status >= 400) {
         throw new Error("Server responds with error!");
       }
@@ -65,7 +67,7 @@ function App() {
 
     //fetch capacity data
     // setCapacityData(CapacityData) //dummy data
-    fetch("http://localhost:3100/attendance").then(res => {
+    fetch("http://localhost:3100/attendance",  { signal: AbortSignal.timeout(1000*60*abort_time) }).then(res => {
       if (res.status >= 400) {
         throw new Error("Server responds with error!");
       }
@@ -79,7 +81,7 @@ function App() {
 
     //fetch opening/closing hours data
     // setHoursData(HoursData) //dummy data
-    fetch("http://localhost:3100/open-hours").then(res => {
+    fetch("http://localhost:3100/open-hours",  { signal: AbortSignal.timeout(1000*60*abort_time) }).then(res => {
       if (res.status >= 400) {
         throw new Error("Server responds with error!");
       }
@@ -93,7 +95,7 @@ function App() {
 
     //fetch tool training appointments data
     // setTrainingsData(TrainingsData) //dummy data
-    fetch("http://localhost:3100/canvas-all").then(res => {
+    fetch("http://localhost:3100/canvas-all",  { signal: AbortSignal.timeout(1000*60*abort_time) }).then(res => {
       if (res.status >= 400) {
         throw new Error("Server responds with error!");
       }
@@ -147,7 +149,7 @@ function App() {
       </div>
 
       {
-        allFalse(errors) ?
+        anyFalse(errors) ?
           <img className="wifi-error" src={WifiError} />
           :
           <></>
@@ -157,16 +159,26 @@ function App() {
   )
 }
 
+// Remove empty values from an array
 const removeEmpties = (arr) => {
   const newArr = arr.filter(dict => Object.keys(dict).length !== 0)
   return newArr
 }
 
-const allFalse = (dict) => {
+// Check if a dictionary contains any false values
+const anyFalse = (dict) => {
+  console.log(dict)
   for (const [key, value] of Object.entries(dict)) {
     if (value === true) return true
   }
   return false
+}
+
+// Abort timeout for fetch requests
+AbortSignal.timeout ??= function timeout(ms) {
+  const ctrl = new AbortController()
+  setTimeout(() => ctrl.abort(), ms)
+  return ctrl.signal
 }
 
 export default App

@@ -34,12 +34,12 @@ function App() {
   const [trainingsData, setTrainingsData] = useState([])
   const [hoursData, setHoursData] = useState([])
   const [date, setDate] = useState(new Date())
-  const [errors, setErrors] = useState({
-    print: false,
-    attendance: false,
-    trainings: false,
-    hours: false,
-  })
+  
+  //errors
+  const [printError, setPrintError] = useState(false)
+  const [attendanceError, setAttendanceError] = useState(false)
+  const [trainingsError, setTrainingError] = useState(false)
+  const [hoursError, setHoursError] = useState(false)
 
   const [refresh, setRefresh] = useState(false)
 
@@ -60,9 +60,9 @@ function App() {
       return res.json()
     }).then(data => {
       setPrintData(removeEmpties(data))
-      setErrors({ ...errors, print: false })
+      setPrintError( false )
     }).catch(err => {
-      setErrors({ ...errors, print: true })
+      setPrintError( true )
     })
 
     //fetch capacity data
@@ -74,9 +74,9 @@ function App() {
       return res.json()
     }).then(data => {
       setAttendanceData(data)
-      setErrors({ ...errors, attendance: false })
+      setAttendanceError( false )
     }).catch(err => {
-      setErrors({ ...errors, attendance: true })
+      setAttendanceError( true )
     })
 
     //fetch opening/closing hours data
@@ -88,9 +88,9 @@ function App() {
       return res.json()
     }).then(data => {
       setHoursData(data)
-      setErrors({ ...errors, hours: false })
+      setHoursError( false )
     }).catch(err => {
-      setErrors({ ...errors, hours: true })
+      setHoursError( true )
     })
 
     //fetch tool training appointments data
@@ -102,9 +102,9 @@ function App() {
       return res.json()
     }).then(data => {
       setTrainingsData(data)
-      setErrors({ ...errors, trainings: false })
+      setTrainingError( false )
     }).catch(err => {
-      setErrors({ ...errors, trainings: true })
+      setTrainingError( true )
     })
 
     setDate(new Date())
@@ -149,12 +149,11 @@ function App() {
       </div>
 
       {
-        anyFalse(errors) ?
+        anyTrue([printError, attendanceError, trainingsError, hoursError])?
           <img className="wifi-error" src={WifiError} />
           :
           <></>
       }
-
     </div >
   )
 }
@@ -165,13 +164,14 @@ const removeEmpties = (arr) => {
   return newArr
 }
 
-// Check if a dictionary contains any false values
-const anyFalse = (dict) => {
-  console.log(dict)
-  for (const [key, value] of Object.entries(dict)) {
-    if (value === true) return true
-  }
-  return false
+// Check if an array contains any true values
+const anyTrue = (arr) => {
+  console.log(arr)
+  let output = false
+
+  arr.forEach((value) =>  {if (value === true){ output = true }} )
+
+  return output
 }
 
 // Abort timeout for fetch requests

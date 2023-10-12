@@ -117,23 +117,25 @@ const sortByDays = (data, today, numDays, TEST) => {
 
     keys.forEach((key, index) => {
         // console.log(data[key]);
-        data[key].forEach((e) => {
-            // console.log(e.start_at)
-            const test = new Date(e.start_at)
-            // console.log(test.getTime())
+        if (data[key].length) {
+            data[key].forEach((e) => {
+                // console.log(e.start_at)
+                const test = new Date(e.start_at)
+                // console.log(test.getTime())
 
-            //iterate through day offsets, 0 to <numDays>
-            for (const offset in [...Array(numDays).keys()]) {
-                //add the appointment to the proper day index, if applicable
-                if (isDate(test, today, parseInt(offset) + DEBUG_OFFSET)) {
-                    finalArray[offset].push(e)
+                //iterate through day offsets, 0 to <numDays>
+                for (const offset in [...Array(numDays).keys()]) {
+                    //add the appointment to the proper day index, if applicable
+                    if (isDate(test, today, parseInt(offset) + DEBUG_OFFSET)) {
+                        finalArray[offset].push(e)
+                    }
                 }
-            }
-        })
+            })
+        }
     })
 
-    const test = new Date(today)
-    test.setDate(test.getDate() + DEBUG_OFFSET)
+    // const test = new Date(today)
+    // test.setDate(test.getDate() + DEBUG_OFFSET)
     // console.log(test)
     // console.log(finalArray)
 

@@ -108,6 +108,7 @@ function App() {
     })
 
     setDate(new Date())
+    console.log('refreshed')
 
     //reset timer
     return () => {

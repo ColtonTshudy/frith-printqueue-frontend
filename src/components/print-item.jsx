@@ -10,11 +10,8 @@ const PrintItem = ({ className, printID, status, startTime, duration }) => {
   //check if this print task has an associated time
   if (!isNaN(secondsRemaining)) {
     timeRemaining = formatSeconds(secondsRemaining)
-    //notify ULAs if a duration was not given for the print
-    if (durationNotGiven && status === 'Printing')
-      timeRemaining = "Error"
     //empty the string if timer's up
-    else if (secondsRemaining <= 0) {
+    if (secondsRemaining <= 0) {
       timeRemaining = "";
     }
   }

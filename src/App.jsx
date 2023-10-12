@@ -60,6 +60,7 @@ function App() {
       return res.json()
     }).then(data => {
       setPrintData(removeEmpties(data))
+      console.log(printData)
       setPrintError( false )
     }).catch(err => {
       setPrintError( true )
@@ -166,7 +167,6 @@ const removeEmpties = (arr) => {
 
 // Check if an array contains any true values
 const anyTrue = (arr) => {
-  console.log(arr)
   let output = false
 
   arr.forEach((value) =>  {if (value === true){ output = true }} )

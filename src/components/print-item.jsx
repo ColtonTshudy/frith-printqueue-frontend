@@ -3,17 +3,23 @@ import { useEffect, useState } from 'react'
 const PrintItem = ({ className, printID, status, startTime, duration }) => {
   const [epoch, setEpoch] = useState(Number.MAX_VALUE);
 
+  const durationNotGiven = duration.length === 0
   const secondsRemaining = duration * 60 * 60 - (epoch - startTime)
   let timeRemaining = ""
 
   //check if this print task has an associated time
   if (!isNaN(secondsRemaining)) {
     timeRemaining = formatSeconds(secondsRemaining)
+    //notify ULAs if a duration was not given for the print
+    if (durationNotGiven && status === 'Printing')
+      timeRemaining = "Error"
     //empty the string if timer's up
-    if (secondsRemaining < 0) {
+    else if (secondsRemaining <= 0) {
       timeRemaining = "";
     }
   }
+
+  console.log(`${printID}: ${secondsRemaining}`)
 
   //update the current epoch every second
   useEffect(() => {
@@ -26,7 +32,7 @@ const PrintItem = ({ className, printID, status, startTime, duration }) => {
   //return a div with 1 or 2 labels; printID and time remaining
   return (
     <div className={className} style={{
-      backgroundColor: getColor(status, timeRemaining),
+      backgroundColor: getColor(status, secondsRemaining, durationNotGiven),
       margin: "1%",
       padding: "2%",
       borderRadius: '10px',
@@ -50,7 +56,7 @@ const PrintItem = ({ className, printID, status, startTime, duration }) => {
 }
 
 //change the div color based on the task's status and remaining time
-const getColor = (status, time) => {
+const getColor = (status, time, durationNotGiven) => {
   switch (status) {
     case "Approved - Waiting for Printer":
       return "cyan"
@@ -59,6 +65,8 @@ const getColor = (status, time) => {
     case "Approved by MGMT":
       return "cyan"
     case 'Printing':
+      if (durationNotGiven)
+        return "aliceblue"
       if (time <= 0)
         return "lime"
       return "aliceblue"

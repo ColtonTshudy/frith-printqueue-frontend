@@ -4,7 +4,7 @@
     align-items: flex-end;
     justify-content: baseline;
 
-    font-size: 75px;
+    font-size: 50px;
 }
 
 .calendar-day {
@@ -24,6 +24,6 @@
 .calendar-sub {
     flex: 1;
     /* margin-top: 50%; */
-    font-size: 70%;
+    font-size: 90%;
     height: 70%;
 }

@@ -60,7 +60,6 @@ function App() {
       return res.json()
     }).then(data => {
       setPrintData(removeEmpties(data))
-      console.log(printData)
       setPrintError( false )
     }).catch(err => {
       setPrintError( true )

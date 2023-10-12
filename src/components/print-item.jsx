@@ -19,8 +19,6 @@ const PrintItem = ({ className, printID, status, startTime, duration }) => {
     }
   }
 
-  console.log(`${printID}: ${secondsRemaining}`)
-
   //update the current epoch every second
   useEffect(() => {
     const timer = setInterval(() => setEpoch(Math.floor(Date.now() / 1000)), 1000)

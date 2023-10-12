@@ -117,7 +117,7 @@ const sortByDays = (data, today, numDays, TEST) => {
 
     keys.forEach((key, index) => {
         // console.log(data[key]);
-        if (data[key].length) {
+        // if (data[key].length) {
             data[key].forEach((e) => {
                 // console.log(e.start_at)
                 const test = new Date(e.start_at)
@@ -131,7 +131,7 @@ const sortByDays = (data, today, numDays, TEST) => {
                     }
                 }
             })
-        }
+        // }
     })
 
     // const test = new Date(today)

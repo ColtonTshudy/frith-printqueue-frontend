@@ -8,7 +8,8 @@ import express from 'express'
 import request from 'request'
 import cors from 'cors'
 
-import canvas_api_key from './canvas_api_key.txt'
+import apiKeys from './rsc/api_keys.json' assert { type: "json" };
+const canvas_api_key = apiKeys.canvas
 
 const app = express()
 app.use(express.json())

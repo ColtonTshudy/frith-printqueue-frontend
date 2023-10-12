@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import './css/calendar-item.css'
 
-const PrintItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday = true, openSlots, totalSlots }) => {
+const CalendarItem = ({ className, openTime, closeTime, duration, startTime, startHour, title, hour, isToday = true, openSlots, totalSlots }) => {
     //hooks
     const ref = useRef()
     const textRef = useRef()
@@ -107,4 +107,4 @@ const getTitle = (title) => {
     return title
 }
 
-export default PrintItem
+export default CalendarItem

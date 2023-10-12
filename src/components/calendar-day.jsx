@@ -4,7 +4,7 @@ import './css/calendar-day.css'
 
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime }) => {
+const CalendarDay = ({ className, dayIndex, trainings, date, openTime, closeTime }) => {
     // console.log(trainings)
     const isToday = dayIndex === date.getDay()
 
@@ -114,4 +114,4 @@ const Calendar = ({ className, dayIndex, trainings, date, openTime, closeTime })
 //clamp value
 const clamp = (val, min, max) => Math.min(Math.max(val, min), max)
 
-export default Calendar
+export default CalendarDay
